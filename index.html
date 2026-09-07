@@ -1,63 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reciclagem eletronica</title>
+    <title>Reciclagem Eletrônica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <nav>
-        <ul>
-            <li>
-                <a href="index.html">Sobre</a>
-            </li>
-            <li>
-                <a href="project.html">Noticias</a>
-            </li>
-            <li>
-                <a href="contact.html">Contato</a>
-            </li>
-            
-        </ul>
-    </nav>
-    
-    <header>
-        <div class="center">
-           <img src="./img/teste.png"></img>
+
+    <!-- Menu Superior com Abas -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./img/teste.png" alt="Logo Reciclagem Eletrônica" onerror="this.src='https://via.placeholder.com/40'">
+            <span>EcoLixo</span>
         </div>
-        <h1>Reciclagem Eletrônica</h1> 
-        <h2> Site para divulgação de informações sobre reciclagem eletrônica</h2>   
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#noticias">Notícias</a></li>
+                <li><a href="#parceiros">Parceiros</a></li>
+                <li><a href="#pontos-coleta">Pontos de Coleta</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section>
-            <h3>Sobre mim</h3>
+    <!-- Banner Elegante com Imagem de Fundo passando -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>Reciclagem Eletrônica</h1> 
+            <h2>Conscientização e descarte sustentável para um futuro verde</h2>
+            <a href="#noticias" class="btn-hero">Explorar Notícias</a>
+        </div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+
+        <!-- Sobre -->
+        <section id="sobre" class="section-card">
+            <div class="title-wrapper">
+                <h2>Sobre o Projeto</h2>
+                <div class="underline"></div>
+            </div>
             <p>
-                Este site tem como objetivo divulgar informações sobre reciclagem eletrônica, conscientizando as pessoas sobre a importância de descartar corretamente os resíduos eletrônicos e promover práticas sustentáveis. Através de artigos, notícias e dicas, buscamos educar o público sobre os impactos ambientais dos resíduos eletrônicos e incentivar a adoção de hábitos mais responsáveis em relação ao descarte desses materiais.         
+                Este site tem como objetivo divulgar informações sobre reciclagem eletrônica, conscientizando as pessoas sobre a importância de descartar corretamente os resíduos eletrônicos e promover práticas sustentáveis. Através de artigos, notícias e dicas, buscamos educar o público sobre os impactos ambientais dos resíduos e incentivar a adoção de hábitos responsáveis.
             </p>
         </section>
-        <section>
-            <h3>teste</h3>
-            <p>
-                teste
-            </p>
+
+        <!-- Notícias Bonitas e Chamativas no Centro -->
+        <section id="noticias" class="section-card">
+            <div class="title-wrapper">
+                <h2>Notícias Recentes</h2>
+                <div class="underline"></div>
+            </div>
+
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="card-content">
+                        <span class="badge">Dicas</span>
+                        <h3>Como descartar baterias antigas de forma segura</h3>
+                        <p>Aprenda os passos essenciais para evitar a contaminação do solo e água ao descartar baterias e pilhas usadas.</p>
+                        <a href="#" class="read-btn">Ler mais &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="card-content">
+                        <span class="badge">Tecnologia</span>
+                        <h3>O impacto dos metais pesados na saúde pública</h3>
+                        <p>Entenda o que acontece quando componentes de computadores e celulares são descartados no lixo comum.</p>
+                        <a href="#" class="read-btn">Ler mais &rarr;</a>
+                    </div>
+                </article>
+            </div>
         </section>
-                <section>
-            <h3>teste</h3>
-            <p>
-              teste  
-            </p>
-        </section>        
+
+        <!-- Parceiros (Separado) -->
+        <section id="parceiros" class="section-card">
+            <div class="title-wrapper">
+                <h2>Parceiros Oficiais</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Empresas e iniciativas que nos ajudam a transformar o meio ambiente:</p>
+            <div class="partner-grid">
+                <div class="partner-card">
+                    <h4>GreenTech Soluções</h4>
+                    <p>Processamento ecológico de resíduos tecnológicos.</p>
+                </div>
+                <div class="partner-card">
+                    <h4>Cooperativa EcoVida</h4>
+                    <p>Triagem e destinação correta de placas e fiações.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pontos de Coleta (Separado) -->
+        <section id="pontos-coleta" class="section-card highlight-box">
+            <div class="title-wrapper">
+                <h2>Pontos de Coleta</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Encontre o local credenciado mais próximo para deixar seu e-lixo:</p>
+            <ul class="coleta-list">
+                <li><strong>Centro de Reciclagem Municipal:</strong> Av. Principal, 1000 - Seg a Sex (08h às 17h)</li>
+                <li><strong>Ecoponto Central:</strong> Rua das Árvores, 450 - Sábados (09h às 13h)</li>
+            </ul>
+        </section>
+
+        <!-- Contato -->
+        <section id="contato" class="section-card">
+            <div class="title-wrapper">
+                <h2>Contato</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Dúvidas ou sugestões? Envie uma mensagem para nossa equipe.</p>
+            <form class="contact-form" action="#" method="POST">
+                <input type="text" placeholder="Seu nome" required>
+                <input type="email" placeholder="Seu e-mail" required>
+                <textarea rows="4" placeholder="Sua mensagem" required></textarea>
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </form>
+        </section>
+
     </main>
 
+    <!-- Rodapé -->
     <footer>
-        <a>
-          
-        </a>
+        <p>&copy; 2026 Reciclagem Eletrônica - Todos os direitos reservados.</p>
     </footer>
-</div>
-    
+
 </body>
 </html>
