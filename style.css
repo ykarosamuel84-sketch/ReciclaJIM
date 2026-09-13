@@ -5,9 +5,13 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #121212; /* Fundo escuro conforme a imagem original */
+    background-color: #121212;
     color: #e0e0e0;
     line-height: 1.6;
 }
@@ -29,15 +33,13 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #52b788;
 }
 
-.logo img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+.logo-icon {
+    font-size: 1.6rem;
 }
 
 .nav-links {
@@ -57,11 +59,11 @@ body {
     color: #52b788;
 }
 
-/* BANNER HERO COM IMAGEM DESLIZANTE/ELEGANTE */
+/* BANNER HERO */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
                 url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') center/cover fixed no-repeat;
-    height: 60vh;
+    height: 65vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,8 +72,8 @@ body {
 }
 
 .hero-overlay h1 {
-    font-size: 3rem;
-    color: #2a9d8f;
+    font-size: 2.8rem;
+    color: #52b788;
     margin-bottom: 10px;
 }
 
@@ -82,18 +84,34 @@ body {
     margin-bottom: 25px;
 }
 
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
 .btn-hero {
-    background-color: #2a9d8f;
-    color: #fff;
-    padding: 12px 30px;
+    padding: 12px 25px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+}
+
+.btn-hero.primary {
+    background-color: #2a9d8f;
+    color: #fff;
+}
+
+.btn-hero.secondary {
+    background-color: transparent;
+    border: 2px solid #2a9d8f;
+    color: #fff;
 }
 
 .btn-hero:hover {
-    background-color: #218380;
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 /* CONTAINER & CARDS */
@@ -114,16 +132,32 @@ body {
 .title-wrapper h2 {
     color: #52b788;
     font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .underline {
-    width: 50px;
+    width: 60px;
     height: 3px;
     background-color: #2a9d8f;
     margin: 8px 0 20px 0;
 }
 
-/* CARDS DE NOTÍCIAS (CHAMATIVAS) */
+.section-desc {
+    margin-bottom: 15px;
+    color: #aaa;
+}
+
+/* GRÁFICO CONTAINER */
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 300px;
+    width: 100%;
+}
+
+/* CARDS DE NOTÍCIAS */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,9 +211,56 @@ body {
     color: #52b788;
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.9rem;
 }
 
-/* PARCEIROS E PONTOS DE COLETA */
+/* BANCO DE DADOS E BUSCA DE MATERIAIS */
+.search-box {
+    margin: 20px 0;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.material-card {
+    background-color: #262626;
+    border-left: 4px solid #52b788;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.icon-mat {
+    font-size: 1.8rem;
+    color: #52b788;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    align-self: flex-start;
+}
+
+.status-badge.green { background-color: #2d6a4f; color: #fff; }
+.status-badge.yellow { background-color: #b78103; color: #fff; }
+
+/* PARCEIROS */
 .partner-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -192,26 +273,40 @@ body {
     padding: 15px;
     border-left: 4px solid #52b788;
     border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s;
 }
 
-.highlight-box {
-    border: 1px solid #2a9d8f;
+.partner-card:hover {
+    background-color: #333;
 }
 
-.coleta-list {
+/* AVALIAÇÃO DE SATISFAÇÃO */
+.star-rating {
+    display: flex;
+    gap: 10px;
+    font-size: 1.8rem;
+    color: #f4a261;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.star-rating .active {
+    color: #e76f51;
+}
+
+.feedback-msg {
     margin-top: 15px;
-    list-style-position: inside;
-}
-
-.coleta-list li {
-    margin-bottom: 10px;
     padding: 10px;
-    background-color: #262626;
+    background-color: #2d6a4f;
+    color: #fff;
     border-radius: 5px;
+    display: none;
 }
 
 /* FORMULÁRIO DE CONTATO */
-.contact-form {
+.contact-form, .rating-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -219,19 +314,14 @@ body {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.rating-form textarea {
     background-color: #2b2b2b;
     border: 1px solid #444;
     color: #fff;
     padding: 12px;
     border-radius: 5px;
     font-family: inherit;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: #52b788;
 }
 
 .submit-btn {
@@ -242,6 +332,11 @@ body {
     border-radius: 5px;
     font-weight: 600;
     cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #40916c;
 }
 
 /* RODAPÉ */
@@ -253,8 +348,9 @@ footer {
     font-size: 0.9rem;
 }
 
-/* RESPONSIVO */
+/* RESPONSIVIDADE */
 @media (max-width: 600px) {
     .hero-overlay h1 { font-size: 2rem; }
-    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .hero-btns { flex-direction: column; }
 }

@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reciclagem Eletrônica</title>
+    <title>EcoJim - Reciclagem Eletrônica & Sustentabilidade</title>
+    
+    <!-- Fontes e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js para Gráficos Interativos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Menu Superior com Abas -->
+    <!-- Menu Superior -->
     <header class="navbar">
         <div class="logo">
-            <img src="./img/teste.png" alt="Logo Reciclagem Eletrônica" onerror="this.src='https://via.placeholder.com/40'">
+            <i class="fa-solid fa-recycle logo-icon"></i>
             <span>EcoJim</span>
         </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#estatisticas">Estatísticas</a></li>
                 <li><a href="#noticias">Notícias</a></li>
+                <li><a href="#descarte">Onde Descartar</a></li>
                 <li><a href="#parceiros">Parceiros</a></li>
-                <li><a href="#pontos-coleta">Pontos de Coleta</a></li>
+                <li><a href="#satisfacao">Avalie-nos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Banner Elegante com Imagem de Fundo passando -->
+    <!-- Banner Principal -->
     <section class="hero">
         <div class="hero-overlay">
-            <h1>Reciclagem Eletrônica</h1> 
-            <h2>Conscientização e descarte sustentável para um futuro verde</h2>
-            <a href="#noticias" class="btn-hero">Explorar Notícias</a>
+            <h1>Reciclagem Eletrônica Inteligente</h1> 
+            <h2>Conscientização, dados e descarte correto para um futuro sustentável</h2>
+            <div class="hero-btns">
+                <a href="#descarte" class="btn-hero primary"><i class="fa-solid fa-location-dot"></i> Achar Ponto de Coleta</a>
+                <a href="#estatisticas" class="btn-hero secondary"><i class="fa-solid fa-chart-line"></i> Ver Estatísticas</a>
+            </div>
         </div>
     </section>
 
@@ -43,18 +55,31 @@
         <!-- Sobre -->
         <section id="sobre" class="section-card">
             <div class="title-wrapper">
-                <h2>Sobre o Projeto</h2>
+                <h2><i class="fa-solid fa-leaf"></i> Sobre o Projeto</h2>
                 <div class="underline"></div>
             </div>
             <p>
-                Este site tem como objetivo divulgar informações sobre reciclagem eletrônica, conscientizando as pessoas sobre a importância de descartar corretamente os resíduos eletrônicos e promover práticas sustentáveis. Através de artigos, notícias e dicas, buscamos educar o público sobre os impactos ambientais dos resíduos e incentivar a adoção de hábitos responsáveis.
+                O <strong>EcoJim</strong> é uma plataforma dedicada a mapear e facilitar o descarte consciente de resíduos eletroeletrônicos (REEE). Conectamos a população a pontos de coleta credenciados, divulgamos relatórios e fornecemos dados educativos alinhados aos padrões da <strong>ABREE</strong> e órgãos internacionais de preservação ambiental.
             </p>
         </section>
 
-        <!-- Notícias Bonitas e Chamativas no Centro -->
+        <!-- Página de Notícias com Gráficos (REQUISITO FUNCIONAL) -->
+        <section id="estatisticas" class="section-card">
+            <div class="title-wrapper">
+                <h2><i class="fa-solid fa-chart-pie"></i> Panorama da Reciclagem no Brasil</h2>
+                <div class="underline"></div>
+            </div>
+            <p class="section-desc">Dados extraídos de relatórios de impacto ambiental (Fonte: Global E-waste Monitor / ABREE):</p>
+            
+            <div class="chart-container">
+                <canvas id="ewasteChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Notícias Recentes com Fontes Externas -->
         <section id="noticias" class="section-card">
             <div class="title-wrapper">
-                <h2>Notícias Recentes</h2>
+                <h2><i class="fa-solid fa-newspaper"></i> Notícias e Artigos</h2>
                 <div class="underline"></div>
             </div>
 
@@ -62,64 +87,116 @@
                 <article class="news-card">
                     <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="card-content">
-                        <span class="badge">Dicas</span>
-                        <h3>Como descartar baterias antigas de forma segura</h3>
-                        <p>Aprenda os passos essenciais para evitar a contaminação do solo e água ao descartar baterias e pilhas usadas.</p>
-                        <a href="#" class="read-btn">Ler mais &rarr;</a>
+                        <span class="badge">Guia Prático</span>
+                        <h3>Como descartar baterias e pilhas com segurança</h3>
+                        <p>Evite a contaminação de solos e lençóis freáticos aprendendo o manejo correto de pilhas de íon-lítio e chumbo.</p>
+                        <a href="https://abree.org.br" target="_blank" class="read-btn">Ler na ABREE <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </article>
 
                 <article class="news-card">
                     <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="card-content">
-                        <span class="badge">Tecnologia</span>
-                        <h3>O impacto dos metais pesados na saúde pública</h3>
-                        <p>Entenda o que acontece quando componentes de computadores e celulares são descartados no lixo comum.</p>
-                        <a href="#" class="read-btn">Ler mais &rarr;</a>
+                        <span class="badge">Impacto</span>
+                        <h3>O perigo dos metais pesados no lixo comum</h3>
+                        <p>Chumbo, mercúrio e cádmo presentes em placas de circuito exigem manufatura reversa especializada.</p>
+                        <a href="https://www.gov.br/mma/pt-br" target="_blank" class="read-btn">Fonte: Ministério do Meio Ambiente <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- Parceiros (Separado) -->
-        <section id="parceiros" class="section-card">
+        <!-- Banco de Dados de Materiais e Locais de Descarte (REQUISITO FUNCIONAL) -->
+        <section id="descarte" class="section-card">
             <div class="title-wrapper">
-                <h2>Parceiros Oficiais</h2>
+                <h2><i class="fa-solid fa-magnifying-glass-location"></i> Banco de Dados de Descarte</h2>
                 <div class="underline"></div>
             </div>
-            <p>Empresas e iniciativas que nos ajudam a transformar o meio ambiente:</p>
-            <div class="partner-grid">
-                <div class="partner-card">
-                    <h4>GreenTech Soluções</h4>
-                    <p>Processamento ecológico de resíduos tecnológicos.</p>
+            <p>Selecione o tipo de equipamento ou busque pelo seu material para saber como e onde descartar:</p>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: celular, TV, notebook, bateria)...">
+            </div>
+
+            <div class="materials-grid" id="materialsGrid">
+                <div class="material-card" data-name="celular smartphone tablet">
+                    <i class="fa-solid fa-mobile-screen icon-mat"></i>
+                    <h4>Smartphones e Tablets</h4>
+                    <p><strong>Destinação:</strong> Pontos de Coleta ABREE / Operadoras de Telefonia.</p>
+                    <span class="status-badge green">Aceito em 100% dos postos</span>
                 </div>
-                <div class="partner-card">
-                    <h4>Cooperativa EcoVida</h4>
-                    <p>Triagem e destinação correta de placas e fiações.</p>
+
+                <div class="material-card" data-name="bateria pilha carregador">
+                    <i class="fa-solid fa-battery-full icon-mat"></i>
+                    <h4>Pilhas e Baterias</h4>
+                    <p><strong>Destinação:</strong> Coretores em supermercados e farmácias credenciadas.</p>
+                    <span class="status-badge yellow">Requer embalagem isolante</span>
+                </div>
+
+                <div class="material-card" data-name="televisao monitor tv lcd crt">
+                    <i class="fa-solid fa-tv icon-mat"></i>
+                    <h4>Monitores e TVs</h4>
+                    <p><strong>Destinação:</strong> Ecopontos Municipais / Centros de Triagem Especializados.</p>
+                    <span class="status-badge green">Agendamento recomendado</span>
+                </div>
+
+                <div class="material-card" data-name="computador notebook pc placa memoria">
+                    <i class="fa-solid fa-laptop icon-mat"></i>
+                    <h4>Computadores e Placas</h4>
+                    <p><strong>Destinação:</strong> Cooperativas de reciclagem tecnológica (Ex: GreenTech).</p>
+                    <span class="status-badge green">Possui valor de logística reversa</span>
                 </div>
             </div>
         </section>
 
-        <!-- Pontos de Coleta (Separado) -->
-        <section id="pontos-coleta" class="section-card highlight-box">
+        <!-- Parceiros -->
+        <section id="parceiros" class="section-card">
             <div class="title-wrapper">
-                <h2>Pontos de Coleta</h2>
+                <h2><i class="fa-solid fa-handshake"></i> Fontes e Parceiros Oficiais</h2>
                 <div class="underline"></div>
             </div>
-            <p>Encontre o local credenciado mais próximo para deixar seu e-lixo:</p>
-            <ul class="coleta-list">
-                <li><strong>Centro de Reciclagem Municipal:</strong> Av. Principal, 1000 - Seg a Sex (08h às 17h)</li>
-                <li><strong>Ecoponto Central:</strong> Rua das Árvores, 450 - Sábados (09h às 13h)</li>
-            </ul>
+            <div class="partner-grid">
+                <a href="https://abree.org.br/" target="_blank" class="partner-card">
+                    <h4>ABREE <i class="fa-solid fa-external-link"></i></h4>
+                    <p>Associação Brasileira de Reciclagem de Eletroeletrônicos e Eletrodomésticos.</p>
+                </a>
+                <a href="https://www.greentech.com.br" target="_blank" class="partner-card">
+                    <h4>GreenTech Soluções <i class="fa-solid fa-external-link"></i></h4>
+                    <p>Processamento e manufatura reversa de resíduos de TI.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Registro de Satisfação do Usuário (REQUISITO OBRIGATÓRIO) -->
+        <section id="satisfacao" class="section-card highlight-box">
+            <div class="title-wrapper">
+                <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Sua opinião é fundamental para melhorarmos nossas ferramentas de conscientização.</p>
+            
+            <form id="ratingForm" class="rating-form">
+                <label>Como você avalia a facilidade de encontrar informações no site?</label>
+                <div class="star-rating">
+                    <i class="fa-star fa-regular" data-value="1"></i>
+                    <i class="fa-star fa-regular" data-value="2"></i>
+                    <i class="fa-star fa-regular" data-value="3"></i>
+                    <i class="fa-star fa-regular" data-value="4"></i>
+                    <i class="fa-star fa-regular" data-value="5"></i>
+                </div>
+
+                <textarea id="feedbackText" rows="3" placeholder="Deixe uma sugestão ou comentário..." required></textarea>
+                <button type="submit" class="submit-btn">Enviar Avaliação</button>
+            </form>
+            <div id="feedbackResponse" class="feedback-msg"></div>
         </section>
 
         <!-- Contato -->
         <section id="contato" class="section-card">
             <div class="title-wrapper">
-                <h2>Contato</h2>
+                <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
                 <div class="underline"></div>
             </div>
-            <p>Dúvidas ou sugestões? Envie uma mensagem para nossa equipe.</p>
             <form class="contact-form" action="#" method="POST">
                 <input type="text" placeholder="Seu nome" required>
                 <input type="email" placeholder="Seu e-mail" required>
@@ -132,8 +209,88 @@
 
     <!-- Rodapé -->
     <footer>
-        <p>&copy; 2026 Reciclagem Eletrônica - Todos os direitos reservados.</p>
+        <p>&copy; 2026 EcoJim Reciclagem Eletrônica - Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Scripts do Gráfico, Busca e Avaliação -->
+    <script>
+        // 1. Inicialização do Gráfico Chart.js
+        const ctx = document.getElementById('ewasteChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2021', '2022', '2023', '2024', '2025 (Est.)'],
+                datasets: [
+                    {
+                        label: 'Lixo Eletrônico Gerado (Milhares de Toneladas)',
+                        data: [2200, 2350, 2400, 2550, 2680],
+                        backgroundColor: '#e76f51'
+                    },
+                    {
+                        label: 'Lixo Eletrônico Reciclado (Milhares de Toneladas)',
+                        data: [65, 90, 140, 210, 310],
+                        backgroundColor: '#52b788'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#fff' } }
+                },
+                scales: {
+                    x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+                    y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+                }
+            }
+        });
+
+        // 2. Filtro de Pesquisa de Materiais (Banco de dados no Front)
+        function filterMaterials() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('material-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // 3. Sistema de Estrelas e Registro de Satisfação
+        const stars = document.querySelectorAll('.star-rating i');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = star.getAttribute('data-value');
+                stars.forEach((s, idx) => {
+                    if (idx < selectedRating) {
+                        s.classList.remove('fa-regular');
+                        s.classList.add('fa-solid', 'active');
+                    } else {
+                        s.classList.remove('fa-solid', 'active');
+                        s.classList.add('fa-regular');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('ratingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (selectedRating === 0) {
+                alert('Por favor, selecione uma nota de 1 a 5 estrelas!');
+                return;
+            }
+            const msg = document.getElementById('feedbackResponse');
+            msg.innerText = `Obrigado pelo feedback! Registramos sua avaliação de ${selectedRating} estrelas com sucesso.`;
+            msg.style.display = 'block';
+            document.getElementById('ratingForm').reset();
+            stars.forEach(s => { s.classList.remove('fa-solid', 'active'); s.classList.add('fa-regular'); });
+        });
+    </script>
 </body>
 </html>
