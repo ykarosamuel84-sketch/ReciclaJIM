@@ -35,6 +35,10 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
+        <!-- Botão Modo Daltônico -->
+        <button id="toggleDaltonico" class="btn-daltonico" onclick="toggleModoDaltonico()">
+            <i class="fa-solid fa-eye"></i> Modo Daltônico
+        </button>
     </header>
 
     <!-- Banner Principal -->
@@ -59,24 +63,28 @@
                 <div class="underline"></div>
             </div>
             <p>
-                O <strong>EcoJim</strong> é uma plataforma dedicada a mapear e facilitar o descarte consciente de resíduos eletroeletrônicos (REEE). Conectamos a população a pontos de coleta credenciados, divulgamos relatórios e fornecemos dados educativos alinhados aos padrões da <strong>ABREE</strong> e órgãos internacionais de preservação ambiental.
+                O <strong>EcoJim</strong> é uma plataforma dedicada a mapear e facilitar o descarte consciente de resíduos eletroeletrônicos (REEE). Conectamos a população a pontos de coleta credenciados, divulgamos relatórios e fornecemos dados educativos alinhados com órgãos de preservação ambiental.
+            </p>
+            <br>
+            <p class="highlight-info">
+                <i class="fa-solid fa-school"></i> <strong>Ponto de Coleta Principal:</strong> A <strong>Escola Joaquim Izidoro Marins</strong> agora é um ponto de arrecadação de resíduos eletrônicos! Traga seus equipamentos antigos ou sem uso e contribua para a sustentabilidade da nossa comunidade.
             </p>
         </section>
 
-        <!-- Página de Notícias com Gráficos (REQUISITO FUNCIONAL) -->
+        <!-- Página de Notícias com Gráficos -->
         <section id="estatisticas" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-chart-pie"></i> Panorama da Reciclagem no Brasil</h2>
                 <div class="underline"></div>
             </div>
-            <p class="section-desc">Dados extraídos de relatórios de impacto ambiental (Fonte: Global E-waste Monitor / ABREE):</p>
+            <p class="section-desc">Dados extraídos de relatórios de impacto ambiental (Fonte: Global E-waste Monitor / Ministério do Meio Ambiente):</p>
             
             <div class="chart-container">
                 <canvas id="ewasteChart"></canvas>
             </div>
         </section>
 
-        <!-- Notícias Recentes com Fontes Externas -->
+        <!-- Notícias Recentes -->
         <section id="noticias" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-newspaper"></i> Notícias e Artigos</h2>
@@ -90,7 +98,7 @@
                         <span class="badge">Guia Prático</span>
                         <h3>Como descartar baterias e pilhas com segurança</h3>
                         <p>Evite a contaminação de solos e lençóis freáticos aprendendo o manejo correto de pilhas de íon-lítio e chumbo.</p>
-                        <a href="https://abree.org.br" target="_blank" class="read-btn">Ler na ABREE <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="#descarte" class="read-btn">Saiba onde descartar <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -106,7 +114,7 @@
             </div>
         </section>
 
-        <!-- Banco de Dados de Materiais e Locais de Descarte (REQUISITO FUNCIONAL) -->
+        <!-- Banco de Dados de Materiais e Locais de Descarte -->
         <section id="descarte" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-magnifying-glass-location"></i> Banco de Dados de Descarte</h2>
@@ -115,21 +123,29 @@
             <p>Selecione o tipo de equipamento ou busque pelo seu material para saber como e onde descartar:</p>
 
             <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: celular, TV, notebook, bateria)...">
+                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: escola, celular, TV, notebook, bateria)...">
             </div>
 
             <div class="materials-grid" id="materialsGrid">
+                <!-- PONTO DE COLETA ESCOLA JOAQUIM IZIDORO MARINS -->
+                <div class="material-card featured-card" data-name="escola joaquim izidoro marins todos residuos eletronicos ponto de coleta">
+                    <i class="fa-solid fa-school icon-mat"></i>
+                    <h4>Escola Joaquim Izidoro Marins</h4>
+                    <p><strong>Destinação:</strong> Ponto Oficial de Arrecadação de Lixo Eletrônico.</p>
+                    <span class="status-badge green">Recebe diversos resíduos eletrônicos</span>
+                </div>
+
                 <div class="material-card" data-name="celular smartphone tablet">
                     <i class="fa-solid fa-mobile-screen icon-mat"></i>
                     <h4>Smartphones e Tablets</h4>
-                    <p><strong>Destinação:</strong> Pontos de Coleta ABREE / Operadoras de Telefonia.</p>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Operadoras de Telefonia.</p>
                     <span class="status-badge green">Aceito em 100% dos postos</span>
                 </div>
 
                 <div class="material-card" data-name="bateria pilha carregador">
                     <i class="fa-solid fa-battery-full icon-mat"></i>
                     <h4>Pilhas e Baterias</h4>
-                    <p><strong>Destinação:</strong> Coretores em supermercados e farmácias credenciadas.</p>
+                    <p><strong>Destinação:</strong> Coretores em supermercados, farmácias e na Escola Joaquim Izidoro Marins.</p>
                     <span class="status-badge yellow">Requer embalagem isolante</span>
                 </div>
 
@@ -143,7 +159,7 @@
                 <div class="material-card" data-name="computador notebook pc placa memoria">
                     <i class="fa-solid fa-laptop icon-mat"></i>
                     <h4>Computadores e Placas</h4>
-                    <p><strong>Destinação:</strong> Cooperativas de reciclagem tecnológica (Ex: GreenTech).</p>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Cooperativas de reciclagem (Ex: GreenTech).</p>
                     <span class="status-badge green">Possui valor de logística reversa</span>
                 </div>
             </div>
@@ -156,10 +172,10 @@
                 <div class="underline"></div>
             </div>
             <div class="partner-grid">
-                <a href="https://abree.org.br/" target="_blank" class="partner-card">
-                    <h4>ABREE <i class="fa-solid fa-external-link"></i></h4>
-                    <p>Associação Brasileira de Reciclagem de Eletroeletrônicos e Eletrodomésticos.</p>
-                </a>
+                <div class="partner-card">
+                    <h4>Escola Joaquim Izidoro Marins <i class="fa-solid fa-school"></i></h4>
+                    <p>Ponto de arrecadação comunitária e conscientização ambiental para alunos e comunidade.</p>
+                </div>
                 <a href="https://www.greentech.com.br" target="_blank" class="partner-card">
                     <h4>GreenTech Soluções <i class="fa-solid fa-external-link"></i></h4>
                     <p>Processamento e manufatura reversa de resíduos de TI.</p>
@@ -167,7 +183,7 @@
             </div>
         </section>
 
-        <!-- Registro de Satisfação do Usuário (REQUISITO OBRIGATÓRIO) -->
+        <!-- Registro de Satisfação do Usuário -->
         <section id="satisfacao" class="section-card highlight-box">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>
@@ -212,40 +228,47 @@
         <p>&copy; 2026 EcoJim Reciclagem Eletrônica - Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Scripts do Gráfico, Busca e Avaliação -->
+    <!-- Scripts do Gráfico, Busca, Avaliação e Modo Daltônico -->
     <script>
         // 1. Inicialização do Gráfico Chart.js
+        let ewasteChart;
         const ctx = document.getElementById('ewasteChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['2021', '2022', '2023', '2024', '2025 (Est.)'],
-                datasets: [
-                    {
-                        label: 'Lixo Eletrônico Gerado (Milhares de Toneladas)',
-                        data: [2200, 2350, 2400, 2550, 2680],
-                        backgroundColor: '#e76f51'
-                    },
-                    {
-                        label: 'Lixo Eletrônico Reciclado (Milhares de Toneladas)',
-                        data: [65, 90, 140, 210, 310],
-                        backgroundColor: '#52b788'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { labels: { color: '#fff' } }
+        
+        function renderChart(c1 = '#e76f51', c2 = '#52b788') {
+            if (ewasteChart) ewasteChart.destroy();
+            ewasteChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025 (Est.)'],
+                    datasets: [
+                        {
+                            label: 'Lixo Eletrônico Gerado (Milhares de Toneladas)',
+                            data: [2200, 2350, 2400, 2550, 2680],
+                            backgroundColor: c1
+                        },
+                        {
+                            label: 'Lixo Eletrônico Reciclado (Milhares de Toneladas)',
+                            data: [65, 90, 140, 210, 310],
+                            backgroundColor: c2
+                        }
+                    ]
                 },
-                scales: {
-                    x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
-                    y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#fff' } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
+                        y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        // 2. Filtro de Pesquisa de Materiais (Banco de dados no Front)
+        renderChart();
+
+        // 2. Filtro de Pesquisa de Materiais
         function filterMaterials() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('material-card');
@@ -291,6 +314,19 @@
             document.getElementById('ratingForm').reset();
             stars.forEach(s => { s.classList.remove('fa-solid', 'active'); s.classList.add('fa-regular'); });
         });
+
+        // 4. Alternância do Modo Daltônico
+        function toggleModoDaltonico() {
+            document.body.classList.toggle('modo-daltonico');
+            const isDaltonico = document.body.classList.contains('modo-daltonico');
+            
+            // Atualiza gráfico com cores acessíveis (Azul e Amarelo em vez de Verde e Vermelho/Laranja)
+            if (isDaltonico) {
+                renderChart('#0077b6', '#e9c46a');
+            } else {
+                renderChart('#e76f51', '#52b788');
+            }
+        }
     </script>
 </body>
 </html>

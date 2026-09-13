@@ -59,6 +59,24 @@ body {
     color: #52b788;
 }
 
+/* BOTÃO MODO DALTÔNICO */
+.btn-daltonico {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #52b788;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.btn-daltonico:hover {
+    background-color: #52b788;
+    color: #121212;
+}
+
 /* BANNER HERO */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
@@ -127,6 +145,14 @@ body {
     border-radius: 10px;
     margin-bottom: 35px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.highlight-info {
+    background-color: #263c32;
+    border-left: 4px solid #52b788;
+    padding: 15px;
+    border-radius: 4px;
+    color: #e0e0e0;
 }
 
 .title-wrapper h2 {
@@ -245,9 +271,18 @@ body {
     gap: 8px;
 }
 
+.material-card.featured-card {
+    border-left: 4px solid #f4a261;
+    background-color: #2d2822;
+}
+
 .icon-mat {
     font-size: 1.8rem;
     color: #52b788;
+}
+
+.featured-card .icon-mat {
+    color: #f4a261;
 }
 
 .status-badge {
@@ -353,4 +388,86 @@ footer {
     .hero-overlay h1 { font-size: 2rem; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
     .hero-btns { flex-direction: column; }
+    .navbar { flex-direction: column; gap: 10px; }
+}
+
+/* ========================================================
+   ESTILOS DO MODO DALTÔNICO (ALTO CONTRASTE - AZUL E AMARELO)
+   ======================================================== */
+body.modo-daltonico {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.modo-daltonico .navbar {
+    border-bottom: 3px solid #0077b6;
+    background-color: #050505;
+}
+
+body.modo-daltonico .logo,
+body.modo-daltonico .title-wrapper h2,
+body.modo-daltonico .read-btn,
+body.modo-daltonico .hero-overlay h1 {
+    color: #0096c7;
+}
+
+body.modo-daltonico .btn-daltonico {
+    background-color: #e9c46a;
+    color: #000;
+    border: 2px solid #0077b6;
+}
+
+body.modo-daltonico .btn-hero.primary,
+body.modo-daltonico .badge,
+body.modo-daltonico .submit-btn {
+    background-color: #0077b6;
+    color: #ffffff;
+}
+
+body.modo-daltonico .btn-hero.secondary {
+    border-color: #0077b6;
+    color: #ffffff;
+}
+
+body.modo-daltonico .underline {
+    background-color: #0077b6;
+}
+
+body.modo-daltonico .section-card {
+    background-color: #111111;
+    border: 1px solid #0077b6;
+}
+
+body.modo-daltonico .highlight-info {
+    background-color: #002b49;
+    border-left: 4px solid #e9c46a;
+}
+
+body.modo-daltonico .material-card,
+body.modo-daltonico .partner-card {
+    background-color: #1a1a1a;
+    border-left: 5px solid #0077b6;
+}
+
+body.modo-daltonico .icon-mat {
+    color: #0096c7;
+}
+
+body.modo-daltonico .status-badge.green {
+    background-color: #0077b6;
+    color: #ffffff;
+}
+
+body.modo-daltonico .status-badge.yellow {
+    background-color: #e9c46a;
+    color: #000000;
+    font-weight: bold;
+}
+
+body.modo-daltonico .star-rating {
+    color: #e9c46a;
+}
+
+body.modo-daltonico .star-rating .active {
+    color: #0096c7;
 }
