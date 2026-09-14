@@ -213,10 +213,10 @@
                 <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
                 <div class="underline"></div>
             </div>
-            <form class="contact-form" action="#" method="POST">
-                <input type="text" placeholder="Seu nome" required>
-                <input type="email" placeholder="Seu e-mail" required>
-                <textarea rows="4" placeholder="Sua mensagem" required></textarea>
+            <form class="contact-form" action="#" method="POST" id="form">
+                <input type="text" placeholder="Seu nome" required id="nome">
+                <input type="email" placeholder="Seu e-mail" required id="email">
+                <textarea rows="4" placeholder="Sua mensagem" required id="mensagem"></textarea>
                 <button type="submit" class="submit-btn">Enviar Mensagem</button>
             </form>
         </section>
@@ -328,5 +328,7 @@
             }
         }
     </script>
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>
