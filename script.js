@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             navWrapper.classList.toggle("active");
         });
 
-        // Fecha o menu ao clicar em qualquer link do menu (melhora a usabilidade)
+        // Fecha o menu ao clicar em qualquer link (melhora a usabilidade)
         const navLinks = document.querySelectorAll(".nav-links a");
         navLinks.forEach(link => {
             link.addEventListener("click", () => {
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
     // 3. GRÁFICOS INTERATIVOS (CHART.JS)
     // ==========================================
+    
     // Gráfico de Arrecadação da Escola Izidoro
     const escolaCtx = document.getElementById("escolaChart");
     if (escolaCtx) {
@@ -64,17 +65,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { labels: { color: "#e0e0e0" } }
+                    legend: { labels: { color: "#64748b" } }
                 },
                 scales: {
-                    x: { ticks: { color: "#aaa" }, grid: { color: "#333" } },
-                    y: { ticks: { color: "#aaa" }, grid: { color: "#333" } }
+                    x: { ticks: { color: "#888" }, grid: { color: "rgba(0,0,0,0.1)" } },
+                    y: { ticks: { color: "#888" }, grid: { color: "rgba(0,0,0,0.1)" } }
                 }
             }
         });
     }
 
-    // Gráfico do Panorama Brasil
+    // Gráfico do Panorama Brasil (ewasteChart)
     const ewasteCtx = document.getElementById("ewasteChart");
     if (ewasteCtx) {
         new Chart(ewasteCtx, {
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data: [97, 3],
                     backgroundColor: ["#e63946", "#52b788"],
                     borderWidth: 2,
-                    borderColor: "#1e1e1e"
+                    borderColor: "#ffffff"
                 }]
             },
             options: {
@@ -94,15 +95,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 plugins: {
                     legend: {
                         position: "bottom",
-                        labels: { color: "#e0e0e0", font: { size: 13 } }
+                        labels: { color: "#64748b", font: { size: 13 } }
                     }
                 }
             }
         });
     }
 
+    // Gráfico Global (elixoChart)
+    const elixoCtx = document.getElementById("elixoChart");
+    if (elixoCtx) {
+        new Chart(elixoCtx, {
+            type: "bar",
+            data: {
+                labels: ["América do Norte", "Europa", "Ásia", "América Latina", "África"],
+                datasets: [{
+                    label: "Geração de E-Lixo (Kg por habitante/ano)",
+                    data: [16.5, 16.2, 5.6, 7.5, 2.5],
+                    backgroundColor: "#2d6a4f",
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: "#64748b" } }
+                }
+            }
+        });
+    }
+
     // ==========================================
-    // 4. AVALIAÇÃO COM ESTRELAS
+    // 4. AVALIAÇÃO COM ESTRELAS E FORMULÁRIOS
     // ==========================================
     const stars = document.querySelectorAll(".star-rating i");
     let selectedRating = 0;
