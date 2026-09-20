@@ -213,5 +213,10 @@ contactForm.addEventListener('submit', (e) => {
         .catch((error) => {
             console.error("Erro no envio:", error);
             alert("Erro ao enviar mensagem!");
+
+            document.getElementById('mobileToggle')?.addEventListener('click', function() {
+    const navWrapper = document.getElementById('navWrapper');
+    navWrapper.classList.toggle('active');
+});
         });
 });

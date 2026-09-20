@@ -24,34 +24,35 @@
     <!-- SVG Filters para Simulação Real de Daltonismo -->
     <svg style="display: none;">
         <defs>
-            <!-- Protanopia (Deficiência de Vermelho) -->
             <filter id="protanopia">
                 <feColorMatrix type="matrix" values="0.56667 0.43333 0.00000 0 0  0.55833 0.44167 0.00000 0 0  0.00000 0.24167 0.75833 0 0  0 0 0 1 0"/>
             </filter>
-            <!-- Deuteranopia (Deficiência de Verde) -->
             <filter id="deuteranopia">
                 <feColorMatrix type="matrix" values="0.625 0.375 0.000 0 0  0.700 0.300 0.000 0 0  0.000 0.300 0.700 0 0  0 0 0 1 0"/>
             </filter>
-            <!-- Tritanopia (Deficiência de Azul) -->
             <filter id="tritanopia">
                 <feColorMatrix type="matrix" values="0.95 0.05 0.00 0 0  0.00 0.43 0.57 0 0  0.00 0.47 0.53 0 0  0 0 0 1 0"/>
             </filter>
-            <!-- Acromatopsia (Monocromático / Visão em Preto e Branco) -->
             <filter id="achromatopsia">
                 <feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 1 0"/>
             </filter>
         </defs>
     </svg>
 
-    <!-- Menu Superior Atualizado com a Logo -->
+    <!-- Menu Superior Atualizado -->
     <header class="navbar">
-        <a href="#" class="logo-container">
-            <!-- Logo usando a imagem enviada ao GitHub -->
-            <img src="Gemini_Generated_Image_azwu4vazwu4vazwu_2.jpg" alt="Logo EcoJim" class="logo-icon">
-            <span class="logo-text">EcoJim</span>
-        </a>
+        <div class="nav-top">
+            <a href="#" class="logo-container">
+                <img src="logo.jpg" alt="Logo EcoJim" class="logo-icon">
+                <span class="logo-text">EcoJim</span>
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
 
-        <nav class="nav-wrapper">
+        <nav class="nav-wrapper" id="navWrapper">
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#escola-impacto">Projeto Izidoro</a></li>
@@ -62,25 +63,24 @@
                 <li><a href="#satisfacao">Avalie-nos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
-        </nav>
 
-        <!-- Acessibilidade e Alternância de Temas -->
-        <div class="controls-wrapper">
-            <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
-                <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
+            <div class="controls-wrapper">
+                <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
 
-            <div class="daltonism-selector">
-                <i class="fa-solid fa-eye control-icon"></i>
-                <select id="daltonismSelect" onchange="changeDaltonismMode(this.value)" class="select-control">
-                    <option value="none">Visão Padrão</option>
-                    <option value="protanopia">Protanopia (Vermelho)</option>
-                    <option value="deuteranopia">Deuteranopia (Verde)</option>
-                    <option value="tritanopia">Tritanopia (Azul)</option>
-                    <option value="achromatopsia">Acromatopsia (Preto/Branco)</option>
-                </select>
+                <div class="daltonism-selector">
+                    <i class="fa-solid fa-eye control-icon"></i>
+                    <select id="daltonismSelect" onchange="changeDaltonismMode(this.value)" class="select-control">
+                        <option value="none">Visão Padrão</option>
+                        <option value="protanopia">Protanopia (Vermelho)</option>
+                        <option value="deuteranopia">Deuteranopia (Verde)</option>
+                        <option value="tritanopia">Tritanopia (Azul)</option>
+                        <option value="achromatopsia">Acromatopsia (Preto/Branco)</option>
+                    </select>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
     <!-- Banner Principal -->
