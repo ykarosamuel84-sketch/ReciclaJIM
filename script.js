@@ -2,88 +2,94 @@
 // 0. INICIALIZAÇÃO DO EMAILJS
 // ========================================================
 (function() {
-    // Chave Pública do EmailJS fornecida por você
     emailjs.init({
         publicKey: "ngMihWippJuMdxlfh",
     });
 })();
 
 // ========================================================
-// 1. GRÁFICOS DO CHART.JS
+// 1. ALTERNÂNCIA DE TEMA CLARO / ESCURO
 // ========================================================
-let ewasteChart;
-let escolaChart;
+const toggleThemeBtn = document.getElementById('toggleTheme');
+const themeIcon = document.getElementById('themeIcon');
 
+toggleThemeBtn.addEventListener('click', () => {
+    if (document.body.classList.contains('theme-dark')) {
+        document.body.classList.remove('theme-dark');
+        document.body.classList.add('theme-light');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        document.body.classList.remove('theme-light');
+        document.body.classList.add('theme-dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    updateChartColors();
+});
+
+// ========================================================
+// 2. MODOS DE DALTONISMO COM FILTROS SVG
+// ========================================================
+function changeDaltonismMode(mode) {
+    document.body.classList.remove('filter-protanopia', 'filter-deuteranopia', 'filter-tritanopia', 'filter-achromatopsia');
+    if (mode !== 'none') {
+        document.body.classList.add(`filter-${mode}`);
+    }
+}
+
+// ========================================================
+// 3. GRÁFICOS INTERATIVOS
+// ========================================================
+let ewasteChart, escolaChart;
 const ctxEwaste = document.getElementById('ewasteChart').getContext('2d');
 const ctxEscola = document.getElementById('escolaChart').getContext('2d');
 
-function renderCharts(c1 = '#e76f51', c2 = '#52b788') {
-    // Gráfico 1: Panorama Nacional
+function renderCharts(color1 = '#25855a', color2 = '#52b788') {
     if (ewasteChart) ewasteChart.destroy();
     ewasteChart = new Chart(ctxEwaste, {
         type: 'bar',
         data: {
             labels: ['2021', '2022', '2023', '2024', '2025 (Est.)'],
             datasets: [
-                {
-                    label: 'Lixo Eletrônico Gerado no Brasil (K-Toneladas)',
-                    data: [2200, 2350, 2400, 2550, 2680],
-                    backgroundColor: c1
-                },
-                {
-                    label: 'Lixo Eletrônico Reciclado (K-Toneladas)',
-                    data: [65, 90, 140, 210, 310],
-                    backgroundColor: c2
-                }
+                { label: 'Lixo Eletrônico Gerado (K-Ton)', data: [2200, 2350, 2400, 2550, 2680], backgroundColor: '#e76f51' },
+                { label: 'Lixo Eletrônico Reciclado (K-Ton)', data: [65, 90, 140, 210, 310], backgroundColor: color2 }
             ]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { labels: { color: '#fff' } }
-            },
-            scales: {
-                x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
-                y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
-            }
+            maintainAspectRatio: false
         }
     });
 
-    // Gráfico 2: Desempenho Interno da Escola Joaquim Izidoro Marins
     if (escolaChart) escolaChart.destroy();
     escolaChart = new Chart(ctxEscola, {
         type: 'line',
         data: {
             labels: ['Mês 1', 'Mês 2', 'Mês 3', 'Mês 4', 'Mês 5'],
             datasets: [{
-                label: 'Arrecadação da Escola Izidoro Marins (kg)',
+                label: 'Arrecadação Izidoro Marins (kg)',
                 data: [40, 85, 150, 290, 450],
-                borderColor: c2,
-                backgroundColor: c2,
-                fill: false,
-                tension: 0.3
+                borderColor: color2,
+                backgroundColor: color2,
+                fill: false
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { labels: { color: '#fff' } }
-            },
-            scales: {
-                x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
-                y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
-            }
+            maintainAspectRatio: false
         }
     });
 }
 
-// Inicializar gráficos na abertura da página
+function updateChartColors() {
+    renderCharts('#25855a', '#52b788');
+}
+
 renderCharts();
 
 // ========================================================
-// 2. FILTRO DE PESQUISA DE MATERIAIS
+// 4. PESQUISA DE MATERIAIS
 // ========================================================
 function filterMaterials() {
     let input = document.getElementById('searchInput').value.toLowerCase();
@@ -91,16 +97,12 @@ function filterMaterials() {
 
     for (let i = 0; i < cards.length; i++) {
         let name = cards[i].getAttribute('data-name');
-        if (name.includes(input)) {
-            cards[i].style.display = "flex";
-        } else {
-            cards[i].style.display = "none";
-        }
+        cards[i].style.display = name.includes(input) ? "flex" : "none";
     }
 }
 
 // ========================================================
-// 3. CARROSSEL DE FOTOS AUTOMÁTICO
+// 5. CARROSSEL DE FOTOS AUTOMÁTICO
 // ========================================================
 let currentSlideIndex = 0;
 let slideInterval;
@@ -109,14 +111,13 @@ function showSlide(index) {
     const slides = document.querySelectorAll('.slide-item');
     const dots = document.querySelectorAll('.dot');
 
-    if (slides.length === 0) return;
-
+    if (!slides.length) return;
     if (index >= slides.length) currentSlideIndex = 0;
     else if (index < 0) currentSlideIndex = slides.length - 1;
     else currentSlideIndex = index;
 
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
 
     slides[currentSlideIndex].classList.add('active');
     if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
@@ -133,9 +134,7 @@ function currentSlide(index) {
 }
 
 function startAutoSlide() {
-    slideInterval = setInterval(() => {
-        moveSlide(1);
-    }, 4000); // Muda a foto a cada 4 segundos
+    slideInterval = setInterval(() => moveSlide(1), 4000);
 }
 
 function resetAutoSlide() {
@@ -143,12 +142,12 @@ function resetAutoSlide() {
     startAutoSlide();
 }
 
-// Inicia o carrossel
 startAutoSlide();
 
 // ========================================================
-// 4. SISTEMA DE ESTRELAS E FORMULÁRIO DE AVALIAÇÃO (EMAILJS)
+// 6. CORREÇÃO DO EMAILJS PARA CONTATO E AVALIAÇÃO
 // ========================================================
+// Sistema de Estrelas
 const stars = document.querySelectorAll('.star-rating i');
 let selectedRating = 0;
 
@@ -158,15 +157,16 @@ stars.forEach(star => {
         stars.forEach((s, idx) => {
             if (idx < selectedRating) {
                 s.classList.remove('fa-regular');
-                s.classList.add('fa-solid', 'active');
+                s.classList.add('fa-solid');
             } else {
-                s.classList.remove('fa-solid', 'active');
+                s.classList.remove('fa-solid');
                 s.classList.add('fa-regular');
             }
         });
     });
 });
 
+// Envio de Avaliação com EmailJS
 document.getElementById('ratingForm').addEventListener('submit', function(e) {
     e.preventDefault();
     if (selectedRating === 0) {
@@ -178,57 +178,40 @@ document.getElementById('ratingForm').addEventListener('submit', function(e) {
     const feedback = document.getElementById('feedbackText').value;
     const msgBox = document.getElementById('feedbackResponse');
 
-    // Enviar dados para EmailJS (Garante recebimento em ykarosamuel84@gmail.com)
+    // Mapeamento correto dos parâmetros para seu Template do EmailJS
     const templateParams = {
-        nome: nome,
-        mensagem: `[AVALIAÇÃO DO SITE]\nNota: ${selectedRating} Estrelas\nComentário: ${feedback}`,
-        email: "Avaliação direta pelo site"
+        from_name: nome,
+        reply_to: "Avaliação do Site",
+        message: `[NOVA AVALIAÇÃO DO SITE DO ECOJIM]\n\nNota: ${selectedRating} Estrelas\nComentário: ${feedback}`
     };
 
     emailjs.send("service_gti544t", "template_vpg842g", templateParams)
         .then(() => {
-            msgBox.innerText = `Obrigado pelo feedback, ${nome}! Sua avaliação de ${selectedRating} estrelas foi enviada para nosso e-mail.`;
+            msgBox.innerText = `Obrigado pelo feedback, ${nome}! Sua avaliação de ${selectedRating} estrelas foi enviada!`;
             msgBox.style.display = 'block';
             document.getElementById('ratingForm').reset();
-            stars.forEach(s => { s.classList.remove('fa-solid', 'active'); s.classList.add('fa-regular'); });
             selectedRating = 0;
         })
         .catch((err) => {
-            console.error("Erro ao enviar avaliação:", err);
-            alert("Ocorreu um erro ao enviar sua avaliação. Tente novamente!");
+            console.error("Erro no envio:", err);
+            alert("Erro ao enviar avaliação! Verifique a configuração no EmailJS.");
         });
 });
 
-// ========================================================
-// 5. FORMULÁRIO DE CONTATO (EMAILJS)
-// ========================================================
+// Envio do Formulário de Contato com EmailJS
 const contactForm = document.querySelector('#form');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const contactMsgBox = document.getElementById('contactResponse');
 
     emailjs.sendForm("service_gti544t", "template_vpg842g", contactForm)
-        .then((response) => {
-            contactMsgBox.innerText = "Mensagem enviada com sucesso! Em breve responderemos.";
+        .then(() => {
+            contactMsgBox.innerText = "Mensagem enviada com sucesso! Responderemos em breve.";
             contactMsgBox.style.display = 'block';
             contactForm.reset();
         })
         .catch((error) => {
             console.error("Erro no envio:", error);
-            alert("Erro ao enviar mensagem! Tente novamente.");
+            alert("Erro ao enviar mensagem!");
         });
 });
-
-// ========================================================
-// 6. ALTERNÂNCIA DO MODO DALTÔNICO
-// ========================================================
-function toggleModoDaltonico() {
-    document.body.classList.toggle('modo-daltonico');
-    const isDaltonico = document.body.classList.contains('modo-daltonico');
-    
-    if (isDaltonico) {
-        renderCharts('#0077b6', '#e9c46a');
-    } else {
-        renderCharts('#e76f51', '#52b788');
-    }
-}
