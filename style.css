@@ -45,13 +45,13 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* NAVBAR & LOGO */
+/* NAVBAR & LOGO - DESKTOP */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--bg-nav);
-    padding: 12px 5%;
+    padding: 12px 2%;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -61,9 +61,7 @@ body {
 
 .nav-top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: auto;
 }
 
 .logo-container {
@@ -71,18 +69,20 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
+/* Logo Maior */
 .logo-icon {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--accent-green);
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--accent-green);
 }
@@ -92,29 +92,32 @@ body {
     background: transparent;
     border: none;
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     cursor: pointer;
 }
 
 .nav-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    flex-wrap: nowrap;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 15px;
+    gap: 10px;
+    align-items: center;
 }
 
 .nav-links a {
     color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    padding: 6px 10px;
+    font-size: 0.88rem;
+    padding: 6px 8px;
     border-radius: 4px;
+    white-space: nowrap; /* Impede a quebra de linha do texto dos botões */
     transition: all 0.2s ease;
 }
 
@@ -123,11 +126,12 @@ body {
     background-color: var(--bg-input);
 }
 
-/* CONTROLES */
+/* CONTROLES (Tema e Daltonismo) */
 .controls-wrapper {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .btn-control {
@@ -151,7 +155,7 @@ body {
     align-items: center;
     gap: 6px;
     background-color: var(--bg-input);
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
 }
@@ -166,7 +170,7 @@ body {
     color: var(--text-primary);
     border: none;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     outline: none;
     cursor: pointer;
@@ -181,7 +185,7 @@ body {
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                 url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') center/cover fixed no-repeat;
-    min-height: 400px;
+    min-height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,7 +237,7 @@ body {
 
 /* CONTAINER & CARDS */
 .container {
-    max-width: 1050px;
+    max-width: 1100px;
     margin: 30px auto;
     padding: 0 15px;
 }
@@ -293,12 +297,12 @@ body {
     border-radius: 8px;
 }
 
-.slide-item display: none;
+.slide-item { display: none; }
 .slide-item.active { display: block; }
 
 .slide-item img {
     width: 100%;
-    height: 300px;
+    height: 320px;
     object-fit: cover;
 }
 
@@ -394,16 +398,17 @@ body {
 
 footer { text-align: center; padding: 20px; background-color: var(--bg-nav); color: var(--text-muted); font-size: 0.85rem; }
 
-/* REGRAS RESPONSIVAS PARA CELULAR E TABLET */
-@media (max-width: 868px) {
+/* REGRAS RESPONSIVAS PARA CELULAR E TABLET (Telas menores que 1024px) */
+@media (max-width: 1024px) {
     .navbar {
         flex-direction: column;
         align-items: stretch;
-        padding: 15px;
+        padding: 12px 20px;
     }
 
     .nav-top {
         width: 100%;
+        justify-content: space-between;
     }
 
     .mobile-toggle {
@@ -415,11 +420,11 @@ footer { text-align: center; padding: 20px; background-color: var(--bg-nav); col
         width: 100%;
         gap: 15px;
         margin-top: 15px;
-        display: none; /* Oculta o menu inicialmente no celular */
+        display: none; /* Oculta no celular até clicar no ícone */
     }
 
     .nav-wrapper.active {
-        display: flex; /* Exibe quando ativo pelo botão */
+        display: flex;
     }
 
     .nav-links {
