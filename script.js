@@ -64,17 +64,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { labels: { color: "#64748b" } }
+                    legend: { labels: { color: "#888" } }
                 },
                 scales: {
-                    x: { ticks: { color: "#888" }, grid: { color: "rgba(0,0,0,0.1)" } },
-                    y: { ticks: { color: "#888" }, grid: { color: "rgba(0,0,0,0.1)" } }
+                    x: { ticks: { color: "#888" }, grid: { color: "rgba(255,255,255,0.05)" } },
+                    y: { ticks: { color: "#888" }, grid: { color: "rgba(255,255,255,0.05)" } }
                 }
             }
         });
     }
 
-    // Gráfico do Panorama Brasil (ewasteChart)
+    // Gráfico do Panorama Brasil (ewasteChart - Pizza Otimizado)
     const ewasteCtx = document.getElementById("ewasteChart");
     if (ewasteCtx) {
         new Chart(ewasteCtx, {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data: [97, 3],
                     backgroundColor: ["#e63946", "#52b788"],
                     borderWidth: 2,
-                    borderColor: "#ffffff"
+                    borderColor: "#1e1e1e"
                 }]
             },
             options: {
@@ -94,7 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 plugins: {
                     legend: {
                         position: "bottom",
-                        labels: { color: "#64748b", font: { size: 13 } }
+                        labels: { 
+                            color: "#aaa", 
+                            font: { size: 12 },
+                            padding: 15
+                        }
                     }
                 }
             }
@@ -119,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { labels: { color: "#64748b" } }
+                    legend: { labels: { color: "#888" } }
                 }
             }
         });
