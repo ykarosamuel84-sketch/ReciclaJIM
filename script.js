@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // ==========================================
-    // 1. MENU MOBILE (HAMBÚRGUER)
-    // ==========================================
+    // 1. MENU MOBILE
     const mobileToggle = document.getElementById("mobileToggle");
     const navWrapper = document.getElementById("navWrapper");
 
@@ -18,9 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================
-    // 2. ALTERNADOR DE TEMA (CLARO / ESCURO) E ATUALIZAÇÃO DOS GRÁFICOS
-    // ==========================================
+    // 2. ALTERNADOR DE TEMA CLARO / ESCURO
     const toggleThemeBtn = document.getElementById("toggleTheme");
     const themeIcon = document.getElementById("themeIcon");
 
@@ -41,9 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ==========================================
-    // 3. GRÁFICOS INTERATIVOS (CHART.JS)
-    // ==========================================
+    // 3. GRÁFICOS INTERATIVOS
     let escolaChartInstance = null;
     let ewasteChartInstance = null;
 
@@ -53,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const gridColor = isLight ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.08)";
         const barColor = isLight ? "#1b4332" : "#52b788";
 
-        // Gráfico da Escola Izidoro
         const escolaCtx = document.getElementById("escolaChart");
         if (escolaCtx) {
             if (escolaChartInstance) escolaChartInstance.destroy();
@@ -82,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        // Gráfico do Panorama Brasil (ewasteChart - Pizza Otimizado)
         const ewasteCtx = document.getElementById("ewasteChart");
         if (ewasteCtx) {
             if (ewasteChartInstance) ewasteChartInstance.destroy();
@@ -103,11 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
                         legend: {
                             position: "bottom",
-                            labels: { 
-                                color: textColor, 
-                                font: { size: 12 },
-                                padding: 15
-                            }
+                            labels: { color: textColor, font: { size: 12 }, padding: 15 }
                         }
                     }
                 }
@@ -121,9 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderCharts();
 
-    // ==========================================
-    // 4. AVALIAÇÃO COM ESTRELAS E FORMULÁRIOS
-    // ==========================================
+    // 4. AVALIAÇÃO DE ESTRELAS
     const stars = document.querySelectorAll(".star-rating i");
     let selectedRating = 0;
 
@@ -142,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Envios de Formulários (Feedback e Contato)
     const ratingForm = document.getElementById("ratingForm");
     if (ratingForm) {
         ratingForm.addEventListener("submit", function (e) {
@@ -174,9 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// ==========================================
-// 5. MODO DALTONISMO (FUNÇÃO GLOBAL)
-// ==========================================
+// 5. MODO DALTONISMO GLOBAL
 function changeDaltonismMode(mode) {
     const htmlElement = document.documentElement;
     if (mode === "none") {
@@ -186,9 +169,7 @@ function changeDaltonismMode(mode) {
     }
 }
 
-// ==========================================
 // 6. CARROSSEL DE FOTOS
-// ==========================================
 let slideIndex = 0;
 
 function showSlide(index) {
@@ -215,9 +196,7 @@ function currentSlide(n) {
     showSlide(n);
 }
 
-// ==========================================
-// 7. BUSCA / FILTRO DE MATERIAIS
-// ==========================================
+// 7. FILTRO DE BUSCA
 function filterMaterials() {
     const input = document.getElementById("searchInput").value.toLowerCase();
     const cards = document.querySelectorAll(".material-card");

@@ -11,17 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Chart.js para Gráficos Interativos -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
 
-    <!-- SVG Filters para Simulação Real de Daltonismo -->
+    <!-- SVG Filters para Daltonismo -->
     <svg style="display: none;">
         <defs>
             <filter id="protanopia">
@@ -39,20 +36,20 @@
         </defs>
     </svg>
 
-    <!-- Menu Superior -->
+    <!-- Header / Navbar Principal -->
     <header class="navbar">
-        <div class="nav-top">
-            <a href="#" class="logo-container">
-                <img src="logo.jpg" alt="EcoJim Logo" class="logo-img">
-                <span class="logo-text">EcoJim</span>
-            </a>
+        <!-- Esquerda: Logo Aumentado -->
+        <a href="#" class="logo-container">
+            <img src="logo.jpg" alt="EcoJim Logo" class="logo-img">
+            <span class="logo-text">EcoJim</span>
+        </a>
 
-            <!-- Botão Hambúrguer para Celular -->
-            <button id="mobileToggle" class="mobile-toggle-btn" aria-label="Abrir Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
+        <!-- Botão Mobile -->
+        <button id="mobileToggle" class="mobile-toggle-btn" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
+        <!-- Centro: Nav Links -->
         <nav class="nav-wrapper" id="navWrapper">
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
@@ -66,13 +63,12 @@
             </ul>
         </nav>
 
-        <!-- Acessibilidade e Alternância de Temas -->
+        <!-- Direita: Controles de Tema e Acessibilidade -->
         <div class="controls-wrapper">
             <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
 
-            <!-- Seletor de Daltonismo Com Área de Clique Total -->
             <label class="daltonism-selector" for="daltonismSelect">
                 <i class="fa-solid fa-eye control-icon"></i>
                 <select id="daltonismSelect" onchange="changeDaltonismMode(this.value)" class="select-control">
@@ -264,11 +260,11 @@
             <ul class="sorocaba-list">
                 <li><i class="fa-solid fa-check-circle"></i> <strong>Ecopontos Municipais:</strong> Locais mantidos pela Prefeitura de Sorocaba para recepção de grandes volumes e resíduos diversos.</li>
                 <li><i class="fa-solid fa-check-circle"></i> <strong>SEMA (Secretaria do Meio Ambiente de Sorocaba):</strong> Promove mutirões periódicos de lixo eletrônico na cidade.</li>
-                <li><i class="fa-solid fa-check-circle"></i> <strong>Parceria Escolar:</strong> Trazer seu equipamento à Escola Izidoro Marins fortalce os projetos socioambientais locais de Sorocaba.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Parceria Escolar:</strong> Trazer seu equipamento à Escola Izidoro Marins fortalece os projetos socioambientais locais de Sorocaba.</li>
             </ul>
         </section>
 
-        <!-- Avaliação de Satisfação -->
+        <!-- Avaliação -->
         <section id="satisfacao" class="section-card highlight-box">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>

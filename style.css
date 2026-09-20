@@ -22,11 +22,9 @@ body.theme-dark {
     --accent-dark-green: #2d6a4f;
     --border-color: #333333;
     --shadow-color: rgba(0, 0, 0, 0.5);
-    --chart-grid: rgba(255, 255, 255, 0.08);
-    --chart-text: #aaaaaa;
 }
 
-/* TEMA CLARO - PALETA DE ALTO CONTRASTE E CORES HARMONIOSAS */
+/* TEMA CLARO */
 body.theme-light {
     --bg-primary: #f0f4f2;
     --bg-card: #ffffff;
@@ -39,8 +37,6 @@ body.theme-light {
     --accent-dark-green: #2d6a4f;
     --border-color: #d1e2d9;
     --shadow-color: rgba(11, 37, 26, 0.08);
-    --chart-grid: rgba(0, 0, 0, 0.1);
-    --chart-text: #2d6a4f;
 }
 
 body {
@@ -51,45 +47,41 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* NAVBAR ORGANIZADA E RESPONSIVA */
+/* NAVBAR ALINHADA EM LINHA ÚNICA */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--bg-nav);
-    padding: 12px 4%;
+    padding: 12px 3%;
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 2px solid var(--accent-green);
     box-shadow: 0 2px 10px var(--shadow-color);
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-wrap: nowrap;
+    gap: 15px;
 }
 
-.nav-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
+/* LOGO MAIOR E ORGANIZADO NA ESQUERDA */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .logo-img {
-    height: 38px;
+    height: 52px; /* Logo maior e em destaque */
     width: auto;
-    max-width: 120px;
+    max-width: 150px;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 50%;
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: var(--accent-green);
 }
@@ -103,27 +95,29 @@ body {
     cursor: pointer;
 }
 
+/* NAV LINKS CENTRALIZADOS */
 .nav-wrapper {
-    flex-grow: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    white-space: nowrap;
 }
 
 .nav-links a {
     color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     padding: 6px 10px;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.2s ease;
 }
 
@@ -132,11 +126,13 @@ body {
     background-color: var(--bg-input);
 }
 
-/* PAINEL DE CONTROLES COM ÁREA DE CLIQUE COMPLETA */
+/* CONTROLES POSICIONADOS TOTALMENTE À DIREITA */
 .controls-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .btn-control {
@@ -159,13 +155,13 @@ body {
     transform: scale(1.05);
 }
 
-/* BOTÃO SELETOR DE DALTONISMO COM ÁREA CLICÁVEL TOTAL */
+/* SELETOR DE DALTONISMO COM CLIQUE NA ÁREA INTEIRA */
 .daltonism-selector {
     position: relative;
     display: inline-flex;
     align-items: center;
     background-color: var(--bg-input);
-    padding: 0 14px;
+    padding: 0 12px;
     height: 38px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
@@ -415,7 +411,7 @@ body {
 
 .dot.active { background-color: var(--accent-green); }
 
-/* GRÁFICOS INTERATIVOS OTIMIZADOS */
+/* GRÁFICOS */
 .chart-container {
     position: relative;
     height: 300px;
@@ -434,7 +430,7 @@ body {
     text-align: center;
 }
 
-/* BANCO DE MATERIAIS */
+/* MATERIAIS DE DESCARTE */
 .search-box {
     margin: 20px 0;
 }
@@ -564,20 +560,25 @@ body.filter-deuteranopia { filter: url(#deuteranopia); }
 body.filter-tritanopia { filter: url(#tritanopia); }
 body.filter-achromatopsia { filter: url(#achromatopsia); }
 
-/* RESPONSIVIDADE NO MÓVEL */
-@media (max-width: 880px) {
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 1024px) {
     .navbar {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: wrap;
     }
 
     .mobile-toggle-btn {
         display: block;
+        order: 2;
+    }
+
+    .controls-wrapper {
+        order: 3;
     }
 
     .nav-wrapper {
         display: none;
         width: 100%;
+        order: 4;
     }
 
     .nav-wrapper.active {
@@ -595,28 +596,5 @@ body.filter-achromatopsia { filter: url(#achromatopsia); }
         display: block;
         text-align: center;
         padding: 8px;
-    }
-
-    .controls-wrapper {
-        justify-content: center;
-        width: 100%;
-        padding-top: 8px;
-        border-top: 1px solid var(--border-color);
-    }
-
-    .select-control {
-        max-width: 100%;
-    }
-
-    .hero-overlay h1 {
-        font-size: 1.7rem;
-    }
-
-    .hero-overlay h2 {
-        font-size: 0.95rem;
-    }
-
-    .chart-pie-container {
-        max-height: 260px;
     }
 }
