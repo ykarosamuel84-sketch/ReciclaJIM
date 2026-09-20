@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoJim - Reciclagem Eletrónica</title> <!--[cite: 16] -->
+    <title>EcoJim - Reciclagem Eletrónica</title>
 
-    <!-- FAVICON (LOGO NA ABA DO NAVEGADOR) -->
-    <link rel="icon" type="image/png" href="logo.png">
-
-    <!-- FONT AWESOME (ÍCONES) -->
+    <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CHART.JS (GRÁFICOS) -->
+    <!-- CHART.JS PARA OS GRÁFICOS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- ESTILOS E SCRIPTS -->
@@ -20,7 +17,7 @@
 </head>
 <body class="theme-light">
 
-    <!-- FILTROS SVG PARA DALTONISMO -->
+    <!-- FILTROS SVG PARA MODO DALTONISMO -->
     <svg style="display: none;">
         <defs>
             <filter id="protanopia"><feColorMatrix type="matrix" values="0.56667 0.43333 0 0 0  0.55833 0.44167 0 0 0  0 0.24167 0.75833 0 0  0 0 0 1 0"/></filter>
@@ -34,7 +31,8 @@
         <nav class="navbar">
             <div class="nav-top">
                 <a href="#" class="logo-container">
-                    <img src="logo.png" alt="EcoJim Logo" class="logo-icon"> 
+                    <!-- Se a sua logo estiver na pasta raiz, troque para src="logo.png" -->
+                    <img src="img/logo.png" alt="EcoJim Logo" class="logo-icon" onerror="this.src='https://via.placeholder.com/50/2d6a4f/ffffff?text=EcoJim'"> 
                     <span class="logo-text">EcoJim</span>
                 </a>
                 <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
@@ -54,15 +52,15 @@
                 </ul>
 
                 <div class="controls-wrapper">
-                    <!-- BOTÃO TEMA ESCURO/CLARO -->
+                    <!-- BOTÃO ALTERNAR TEMA -->
                     <button class="btn-control" id="toggleTheme" title="Alternar Tema">
                         <i class="fa-solid fa-moon" id="themeIcon"></i>
                     </button>
 
-                    <!-- SELETOR DE DALTONISMO COM ÁREA INTEIRAMENTE CLICÁVEL -->
+                    <!-- SELETOR CLICÁVEL MODO DALTONISMO -->
                     <div class="daltonism-selector">
                         <i class="fa-solid fa-eye control-icon"></i>
-                        <select class="select-control" onchange="changeDaltonismMode(this.value)">
+                        <select class="select-control" id="daltonismSelect" onchange="changeDaltonismMode(this.value)">
                             <option value="none">Visão Normal</option>
                             <option value="protanopia">Protanopia</option>
                             <option value="deuteranopia">Deuteranopia</option>
@@ -100,49 +98,89 @@
             </p>
         </section>
 
-        <!-- ESCOLA IZIDORO -->
+        <!-- ESCOLA IZIDORO COM CARROSSEL DE IMAGENS -->
         <section id="escola" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-school"></i> Escola Izidoro</h2>
                 <div class="underline"></div>
             </div>
-            <p>Parceria educacional dedicada à coleta de equipamentos desusados e à formação de jovens conscientes sobre a sustentabilidade do ecossistema local.</p>
+            <p>Parceria educacional dedicada à recolha de equipamentos em desuso e à formação de jovens conscientes sobre a sustentabilidade do ecossistema local.</p>
+
+            <!-- CARROSSEL DE IMAGENS RESTAURADO -->
+            <div class="carousel-container">
+                <div class="slide-item active">
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1000&q=80" alt="Oficina de Reciclagem">
+                    <div class="slide-caption">Oficinas Educativas sobre E-Lixo</div>
+                </div>
+                <div class="slide-item">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1000&q=80" alt="Recolha na Escola">
+                    <div class="slide-caption">Ponto de Recolha de Eletrónicos na Escola Izidoro</div>
+                </div>
+                <div class="slide-item">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" alt="Separação de Materiais">
+                    <div class="slide-caption">Triagem e Separação Consciente dos Componentes</div>
+                </div>
+
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
         </section>
 
-        <!-- PANORAMA -->
+        <!-- PANORAMA COM GRÁFICOS RESTAURADOS -->
         <section id="panorama" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-chart-pie"></i> Panorama do E-Lixo</h2>
                 <div class="underline"></div>
             </div>
+
             <div class="kpi-grid">
                 <div class="kpi-card">
                     <h3>53.6 Mt</h3>
-                    <p>Lixo Eletrónico Gerado Globalmente por Ano</p>
+                    <p>Lixo Eletrónico Gerado Globalmente/Ano</p>
                 </div>
                 <div class="kpi-card">
                     <h3>17.4%</h3>
                     <p>Apenas Reciclado Documentado</p>
                 </div>
             </div>
+
+            <!-- ÁREA DO GRÁFICO CHART.JS -->
+            <div class="chart-container">
+                <canvas id="elixoChart"></canvas>
+            </div>
         </section>
 
-        <!-- GUIA DE MATERIAIS -->
+        <!-- GUIA DE MATERIAIS COM PESQUISA -->
         <section id="guia" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-recycle"></i> Guia de Materiais</h2>
                 <div class="underline"></div>
             </div>
-            <div class="materials-grid">
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar material (ex: Bateria, Telemóvel, TV)..." onkeyup="filterMaterials()">
+            </div>
+
+            <div class="materials-grid" id="materialsGrid">
                 <div class="material-card">
                     <h3>Telemóveis & Tablets</h3>
-                    <p>Possuem metais preciosos e baterias que devem ser descarte especial.</p>
+                    <p>Possuem metais preciosos e baterias que exigem descarte especializado.</p>
                     <span class="status-badge green">Reciclagem Alta</span>
                 </div>
                 <div class="material-card">
                     <h3>Baterias & Pilhas</h3>
                     <p>Contêm metais pesados altamente poluentes se descartados no lixo comum.</p>
                     <span class="status-badge yellow">Perigo Químico</span>
+                </div>
+                <div class="material-card">
+                    <h3>Monitores & TVs</h3>
+                    <p>Exigem descarte adequado para evitar contaminação por chumbo e fósforo.</p>
+                    <span class="status-badge yellow">Atenção Especial</span>
+                </div>
+                <div class="material-card">
+                    <h3>Eletrodomésticos</h3>
+                    <p>Grandes volumes que contêm plásticos e ligas metálicas reaproveitáveis.</p>
+                    <span class="status-badge green">Reciclagem Média</span>
                 </div>
             </div>
         </section>
@@ -159,11 +197,18 @@
             </ul>
         </section>
 
-        <!-- AVALIAÇÕES -->
+        <!-- AVALIAÇÕES COM ESTRELAS RESTAURADAS -->
         <section id="avaliar" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-star"></i> Avaliações da Comunidade</h2>
                 <div class="underline"></div>
+            </div>
+            <div class="star-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
             </div>
             <form class="rating-form" onsubmit="event.preventDefault();">
                 <textarea placeholder="Deixe a sua opinião sobre o projeto EcoJim..." rows="3"></textarea>
