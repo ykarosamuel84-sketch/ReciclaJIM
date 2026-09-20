@@ -3,46 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoJim - Reciclagem Eletrónica</title> <!--[cite: 15] -->
+    <title>EcoJim - Reciclagem Eletrónica</title> <!--[cite: 16] -->
 
-    <!-- FAVICON (Logo na aba do navegador) -->
-    <link rel="icon" type="image/png" href="img/logo.png"> <!-- Altere o caminho se o seu ficheiro tiver outro nome/pasta -->
+    <!-- FAVICON (LOGO NA ABA DO NAVEGADOR) -->
+    <link rel="icon" type="image/png" href="logo.png">
 
-    <!-- FONT AWESOME (Ícones) -->
+    <!-- FONT AWESOME (ÍCONES) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CHART.JS (Gráficos) -->
+    <!-- CHART.JS (GRÁFICOS) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- ESTILOS CSS -->
+    <!-- ESTILOS E SCRIPTS -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- SCRIPT JS -->
     <script src="script.js" defer></script>
 </head>
-<body class="theme-dark">
+<body class="theme-light">
 
-    <!-- FILTROS SVG PARA MODO DALTONISMO -->
+    <!-- FILTROS SVG PARA DALTONISMO -->
     <svg style="display: none;">
         <defs>
-            <filter id="protanopia">
-                <feColorMatrix type="matrix" values="0.56667 0.43333 0 0 0  0.55833 0.44167 0 0 0  0 0.24167 0.75833 0 0  0 0 0 1 0"/>
-            </filter>
-            <filter id="deuteranopia">
-                <feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/>
-            </filter>
-            <filter id="tritanopia">
-                <feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.43333 0.56667 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/>
-            </filter>
+            <filter id="protanopia"><feColorMatrix type="matrix" values="0.56667 0.43333 0 0 0  0.55833 0.44167 0 0 0  0 0.24167 0.75833 0 0  0 0 0 1 0"/></filter>
+            <filter id="deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter>
+            <filter id="tritanopia"><feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.43333 0.56667 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/></filter>
         </defs>
     </svg>
 
-    <!-- NAVBAR / CABEÇALHO -->
+    <!-- NAVBAR HEADER -->
     <header>
         <nav class="navbar">
             <div class="nav-top">
                 <a href="#" class="logo-container">
-                    <img src="img/logo.png" alt="Logo EcoJim" class="logo-icon">
+                    <img src="logo.png" alt="EcoJim Logo" class="logo-icon"> 
                     <span class="logo-text">EcoJim</span>
                 </a>
                 <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
@@ -62,12 +54,12 @@
                 </ul>
 
                 <div class="controls-wrapper">
-                    <!-- Alternador de Tema -->
+                    <!-- BOTÃO TEMA ESCURO/CLARO -->
                     <button class="btn-control" id="toggleTheme" title="Alternar Tema">
                         <i class="fa-solid fa-moon" id="themeIcon"></i>
                     </button>
 
-                    <!-- Selector de Daltonismo -->
+                    <!-- SELETOR DE DALTONISMO COM ÁREA INTEIRAMENTE CLICÁVEL -->
                     <div class="daltonism-selector">
                         <i class="fa-solid fa-eye control-icon"></i>
                         <select class="select-control" onchange="changeDaltonismMode(this.value)">
@@ -94,9 +86,10 @@
         </div>
     </section>
 
+    <!-- CONTEÚDO PRINCIPAL DO SITE -->
     <main class="container">
 
-        <!-- SEÇÃO: O PROJETO -->
+        <!-- PROJETO -->
         <section id="projeto" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-leaf"></i> Sobre o Projeto EcoJim</h2>
@@ -107,136 +100,94 @@
             </p>
         </section>
 
-        <!-- SEÇÃO: ESCOLA IZIDORO -->
+        <!-- ESCOLA IZIDORO -->
         <section id="escola" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-school"></i> Escola Izidoro - Arrecadação</h2>
+                <h2><i class="fa-solid fa-school"></i> Escola Izidoro</h2>
                 <div class="underline"></div>
             </div>
-            
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <h3>Total Arrecadado</h3>
-                    <p class="kpi-number">465 kg</p>
-                </div>
-                <div class="kpi-card">
-                    <h3>Alunos Participantes</h3>
-                    <p class="kpi-number">320+</p>
-                </div>
-            </div>
-
-            <!-- Carrossel de Fotos -->
-            <div class="carousel-container">
-                <div class="slide-item active">
-                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1000&q=80" alt="Recolha de E-Lixo">
-                    <div class="slide-caption">Ponto de recolha na entrada principal da escola</div>
-                </div>
-                <div class="slide-item">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80" alt="Componentes Eletrónicos">
-                    <div class="slide-caption">Triagem de componentes e placas de circuitos</div>
-                </div>
-                <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-
-            <!-- Gráfico da Escola -->
-            <div class="chart-container">
-                <canvas id="escolaChart"></canvas>
-            </div>
+            <p>Parceria educacional dedicada à coleta de equipamentos desusados e à formação de jovens conscientes sobre a sustentabilidade do ecossistema local.</p>
         </section>
 
-        <!-- SEÇÃO: PANORAMA BRASIL -->
+        <!-- PANORAMA -->
         <section id="panorama" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-chart-pie"></i> Panorama no Brasil</h2>
+                <h2><i class="fa-solid fa-chart-pie"></i> Panorama do E-Lixo</h2>
                 <div class="underline"></div>
             </div>
-            <p>Apenas uma pequena fração do lixo eletrónico produzido recebe a destinação correta.</p>
-            <div class="chart-container" style="margin-top: 20px;">
-                <canvas id="ewasteChart"></canvas>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3>53.6 Mt</h3>
+                    <p>Lixo Eletrónico Gerado Globalmente por Ano</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>17.4%</h3>
+                    <p>Apenas Reciclado Documentado</p>
+                </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: GUIA DE MATERIAIS -->
+        <!-- GUIA DE MATERIAIS -->
         <section id="guia" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-magnifying-glass"></i> Guia de Materiais</h2>
+                <h2><i class="fa-solid fa-recycle"></i> Guia de Materiais</h2>
                 <div class="underline"></div>
             </div>
-            <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Pesquise por telemóvel, pilhas, monitores...">
-            </div>
-
-            <div class="materials-grid" id="materialsGrid">
-                <div class="material-card" data-name="celular smartphone telemovel">
-                    <h3>Telemóveis e Baterias</h3>
-                    <p>Contêm metais pesados. Devem ser entregues em pontos específicos.</p>
-                    <span class="status-badge green">Aceito</span>
+            <div class="materials-grid">
+                <div class="material-card">
+                    <h3>Telemóveis & Tablets</h3>
+                    <p>Possuem metais preciosos e baterias que devem ser descarte especial.</p>
+                    <span class="status-badge green">Reciclagem Alta</span>
                 </div>
-                <div class="material-card" data-name="computador notebook pc memoria">
-                    <h3>Computadores e Placas</h3>
-                    <p>Possuem componentes recicláveis com alto valor de reaproveitamento.</p>
-                    <span class="status-badge green">Aceito</span>
-                </div>
-                <div class="material-card" data-name="lampada fluorescente">
-                    <h3>Lâmpadas Fluorescentes</h3>
-                    <p>Requerem tratamento especial devido ao vapor de mercúrio.</p>
-                    <span class="status-badge yellow">Atenção Especial</span>
+                <div class="material-card">
+                    <h3>Baterias & Pilhas</h3>
+                    <p>Contêm metais pesados altamente poluentes se descartados no lixo comum.</p>
+                    <span class="status-badge yellow">Perigo Químico</span>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: ECOPONTOS SOROCABA -->
+        <!-- ECOPONTOS -->
         <section id="sorocaba" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-location-dot"></i> Ecopontos em Sorocaba</h2>
+                <h2><i class="fa-solid fa-location-dot"></i> Ecopontos e Recolha</h2>
                 <div class="underline"></div>
             </div>
             <ul class="sorocaba-list">
-                <li><strong>Ecoponto Vila Athanázio:</strong> Rua Dr. Américo Figueiredo</li>
-                <li><strong>Ecoponto Parque das Laranjeiras:</strong> Rua Mário Soave</li>
-                <li><strong>Cooperativa Metatarse:</strong> Atendimento para grandes volumes</li>
+                <li><strong>Ecoponto Central:</strong> Atendimento de Segunda a Sexta, das 08h às 17h.</li>
+                <li><strong>Posto Escola Izidoro:</strong> Recolha de pequenos eletrónicos em horário escolar.</li>
             </ul>
         </section>
 
-        <!-- SEÇÃO: AVALIAÇÃO -->
+        <!-- AVALIAÇÕES -->
         <section id="avaliar" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-star"></i> Avalie o Nosso Projeto</h2>
+                <h2><i class="fa-solid fa-star"></i> Avaliações da Comunidade</h2>
                 <div class="underline"></div>
             </div>
-            <form id="ratingForm" class="rating-form">
-                <label>Como avalia a facilidade de encontrar informações no site?</label>
-                <div class="star-rating">
-                    <i class="fa-regular fa-star" data-value="1"></i>
-                    <i class="fa-regular fa-star" data-value="2"></i>
-                    <i class="fa-regular fa-star" data-value="3"></i>
-                    <i class="fa-regular fa-star" data-value="4"></i>
-                    <i class="fa-regular fa-star" data-value="5"></i>
-                </div>
-                <textarea rows="3" class="input-field" placeholder="Deixe o seu comentário (opcional)..."></textarea>
+            <form class="rating-form" onsubmit="event.preventDefault();">
+                <textarea placeholder="Deixe a sua opinião sobre o projeto EcoJim..." rows="3"></textarea>
                 <button type="submit" class="submit-btn">Enviar Avaliação</button>
             </form>
-            <div id="feedbackResponse"></div>
         </section>
 
-        <!-- SEÇÃO: CONTACTO -->
+        <!-- CONTACTO -->
         <section id="contato" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-envelope"></i> Contacte-nos</h2>
+                <h2><i class="fa-solid fa-envelope"></i> Contacto</h2>
                 <div class="underline"></div>
             </div>
-            <form id="form" class="contact-form">
+            <form class="contact-form" onsubmit="event.preventDefault();">
                 <input type="text" placeholder="Seu Nome" required>
                 <input type="email" placeholder="Seu E-mail" required>
-                <textarea rows="4" placeholder="Sua Mensagem..." required></textarea>
+                <textarea placeholder="Sua Mensagem" rows="4" required></textarea>
                 <button type="submit" class="submit-btn">Enviar Mensagem</button>
             </form>
-            <div id="contactResponse"></div>
         </section>
 
     </main>
 
+    <!-- RODAPÉ -->
     <footer>
         <p>&copy; EcoJim - Projeto de Conscientização sobre Reciclagem Eletrónica.</p>
     </footer>
