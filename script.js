@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ==========================================
-    // 2. ALTERNADOR DE TEMA (CLARO / ESCURO)
+    // 2. ALTERNADOR DE TEMA (CLARO / ESCURO) E ATUALIZAÇÃO DOS GRÁFICOS
     // ==========================================
     const toggleThemeBtn = document.getElementById("toggleTheme");
     const themeIcon = document.getElementById("themeIcon");
@@ -37,97 +37,89 @@ document.addEventListener("DOMContentLoaded", function () {
                 themeIcon.classList.remove("fa-sun");
                 themeIcon.classList.add("fa-moon");
             }
+            updateChartTheme();
         });
     }
 
     // ==========================================
     // 3. GRÁFICOS INTERATIVOS (CHART.JS)
     // ==========================================
-    
-    // Gráfico de Arrecadação da Escola Izidoro
-    const escolaCtx = document.getElementById("escolaChart");
-    if (escolaCtx) {
-        new Chart(escolaCtx, {
-            type: "bar",
-            data: {
-                labels: ["Jan/Fev", "Mar/Abr", "Mai/Jun", "Jul/Ago", "Set/Out"],
-                datasets: [{
-                    label: "Quilos de E-Lixo Arrecadados (kg)",
-                    data: [45, 90, 120, 85, 110],
-                    backgroundColor: "#52b788",
-                    borderColor: "#2d6a4f",
-                    borderWidth: 1,
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { labels: { color: "#888" } }
-                },
-                scales: {
-                    x: { ticks: { color: "#888" }, grid: { color: "rgba(255,255,255,0.05)" } },
-                    y: { ticks: { color: "#888" }, grid: { color: "rgba(255,255,255,0.05)" } }
-                }
-            }
-        });
-    }
+    let escolaChartInstance = null;
+    let ewasteChartInstance = null;
 
-    // Gráfico do Panorama Brasil (ewasteChart - Pizza Otimizado)
-    const ewasteCtx = document.getElementById("ewasteChart");
-    if (ewasteCtx) {
-        new Chart(ewasteCtx, {
-            type: "pie",
-            data: {
-                labels: ["Descartado Incorretamente (97%)", "Reciclado Oficialmente (3%)"],
-                datasets: [{
-                    data: [97, 3],
-                    backgroundColor: ["#e63946", "#52b788"],
-                    borderWidth: 2,
-                    borderColor: "#1e1e1e"
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: "bottom",
-                        labels: { 
-                            color: "#aaa", 
-                            font: { size: 12 },
-                            padding: 15
+    function renderCharts() {
+        const isLight = document.body.classList.contains("theme-light");
+        const textColor = isLight ? "#2d6a4f" : "#aaaaaa";
+        const gridColor = isLight ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.08)";
+        const barColor = isLight ? "#1b4332" : "#52b788";
+
+        // Gráfico da Escola Izidoro
+        const escolaCtx = document.getElementById("escolaChart");
+        if (escolaCtx) {
+            if (escolaChartInstance) escolaChartInstance.destroy();
+            escolaChartInstance = new Chart(escolaCtx, {
+                type: "bar",
+                data: {
+                    labels: ["Jan/Fev", "Mar/Abr", "Mai/Jun", "Jul/Ago", "Set/Out"],
+                    datasets: [{
+                        label: "Quilos de E-Lixo Arrecadados (kg)",
+                        data: [45, 90, 120, 85, 110],
+                        backgroundColor: barColor,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: textColor } }
+                    },
+                    scales: {
+                        x: { ticks: { color: textColor }, grid: { color: gridColor } },
+                        y: { ticks: { color: textColor }, grid: { color: gridColor } }
+                    }
+                }
+            });
+        }
+
+        // Gráfico do Panorama Brasil (ewasteChart - Pizza Otimizado)
+        const ewasteCtx = document.getElementById("ewasteChart");
+        if (ewasteCtx) {
+            if (ewasteChartInstance) ewasteChartInstance.destroy();
+            ewasteChartInstance = new Chart(ewasteCtx, {
+                type: "pie",
+                data: {
+                    labels: ["Descartado Incorretamente (97%)", "Reciclado Oficialmente (3%)"],
+                    datasets: [{
+                        data: [97, 3],
+                        backgroundColor: ["#d90429", "#2d6a4f"],
+                        borderWidth: 2,
+                        borderColor: isLight ? "#ffffff" : "#1e1e1e"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: { 
+                                color: textColor, 
+                                font: { size: 12 },
+                                padding: 15
+                            }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
-    // Gráfico Global (elixoChart)
-    const elixoCtx = document.getElementById("elixoChart");
-    if (elixoCtx) {
-        new Chart(elixoCtx, {
-            type: "bar",
-            data: {
-                labels: ["América do Norte", "Europa", "Ásia", "América Latina", "África"],
-                datasets: [{
-                    label: "Geração de E-Lixo (Kg por habitante/ano)",
-                    data: [16.5, 16.2, 5.6, 7.5, 2.5],
-                    backgroundColor: "#2d6a4f",
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { labels: { color: "#888" } }
-                }
-            }
-        });
+    function updateChartTheme() {
+        renderCharts();
     }
+
+    renderCharts();
 
     // ==========================================
     // 4. AVALIAÇÃO COM ESTRELAS E FORMULÁRIOS

@@ -9,7 +9,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* VARIÁVEIS DE COR - TEMA ESCURO (PADRÃO) */
+/* TEMA ESCURO (PADRÃO) */
 body.theme-dark {
     --bg-primary: #121212;
     --bg-card: #1e1e1e;
@@ -22,21 +22,25 @@ body.theme-dark {
     --accent-dark-green: #2d6a4f;
     --border-color: #333333;
     --shadow-color: rgba(0, 0, 0, 0.5);
+    --chart-grid: rgba(255, 255, 255, 0.08);
+    --chart-text: #aaaaaa;
 }
 
-/* VARIÁVEIS DE COR - TEMA CLARO */
+/* TEMA CLARO - PALETA DE ALTO CONTRASTE E CORES HARMONIOSAS */
 body.theme-light {
-    --bg-primary: #f4f6f8;
+    --bg-primary: #f0f4f2;
     --bg-card: #ffffff;
     --bg-nav: #ffffff;
-    --bg-input: #edf2f7;
-    --text-primary: #2d3748;
-    --text-title: #1a202c;
-    --text-muted: #718096;
-    --accent-green: #25855a;
-    --accent-dark-green: #2f855a;
-    --border-color: #e2e8f0;
-    --shadow-color: rgba(0, 0, 0, 0.08);
+    --bg-input: #e8f0eb;
+    --text-primary: #1c2826;
+    --text-title: #0b251a;
+    --text-muted: #4a5d55;
+    --accent-green: #1b4332;
+    --accent-dark-green: #2d6a4f;
+    --border-color: #d1e2d9;
+    --shadow-color: rgba(11, 37, 26, 0.08);
+    --chart-grid: rgba(0, 0, 0, 0.1);
+    --chart-text: #2d6a4f;
 }
 
 body {
@@ -79,7 +83,9 @@ body {
 .logo-img {
     height: 38px;
     width: auto;
+    max-width: 120px;
     object-fit: contain;
+    border-radius: 4px;
 }
 
 .logo-text {
@@ -88,7 +94,6 @@ body {
     color: var(--accent-green);
 }
 
-/* BOTÃO HAMBÚRGUER */
 .mobile-toggle-btn {
     display: none;
     background: transparent;
@@ -127,7 +132,7 @@ body {
     background-color: var(--bg-input);
 }
 
-/* PAINEL DE CONTROLES (TEMA E DALTONISMO) */
+/* PAINEL DE CONTROLES COM ÁREA DE CLIQUE COMPLETA */
 .controls-wrapper {
     display: flex;
     align-items: center;
@@ -138,8 +143,8 @@ body {
     background-color: var(--bg-input);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 0.95rem;
@@ -151,22 +156,39 @@ body {
 
 .btn-control:hover {
     color: var(--accent-green);
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
+/* BOTÃO SELETOR DE DALTONISMO COM ÁREA CLICÁVEL TOTAL */
 .daltonism-selector {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
     background-color: var(--bg-input);
-    padding: 6px 12px;
+    padding: 0 14px;
+    height: 38px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.daltonism-selector:hover {
+    border-color: var(--accent-green);
 }
 
 .control-icon {
     color: var(--accent-green);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    margin-right: 8px;
+    pointer-events: none;
+}
+
+.arrow-icon {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-left: 6px;
+    pointer-events: none;
 }
 
 .select-control {
@@ -174,11 +196,14 @@ body {
     color: var(--text-primary);
     border: none;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
     outline: none;
     cursor: pointer;
-    max-width: 150px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 4px;
 }
 
 .select-control option {
@@ -190,8 +215,8 @@ body {
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                 url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') center/cover fixed no-repeat;
-    height: 50vh;
-    min-height: 350px;
+    height: 48vh;
+    min-height: 340px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,7 +226,7 @@ body {
 
 .hero-overlay h1 {
     font-size: 2.2rem;
-    color: var(--accent-green);
+    color: #52b788;
     margin-bottom: 12px;
 }
 
@@ -232,13 +257,13 @@ body {
 }
 
 .btn-hero.primary {
-    background-color: var(--accent-green);
+    background-color: #2d6a4f;
     color: #fff;
 }
 
 .btn-hero.secondary {
     background-color: transparent;
-    border: 2px solid var(--accent-green);
+    border: 2px solid #52b788;
     color: #fff;
 }
 
@@ -450,6 +475,7 @@ body {
     padding: 3px 8px;
     border-radius: 4px;
     align-self: flex-start;
+    font-weight: 600;
 }
 
 .status-badge.green { background-color: var(--accent-dark-green); color: #fff; }
@@ -532,13 +558,13 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* APLICAÇÃO DOS FILTROS SVG PARA DALTONISMO */
+/* FILTROS DE DALTONISMO */
 body.filter-protanopia { filter: url(#protanopia); }
 body.filter-deuteranopia { filter: url(#deuteranopia); }
 body.filter-tritanopia { filter: url(#tritanopia); }
 body.filter-achromatopsia { filter: url(#achromatopsia); }
 
-/* AJUSTES DE RESPONSIVIDADE (DISPOSITIVOS MÓVEIS / CELULAR) */
+/* RESPONSIVIDADE NO MÓVEL */
 @media (max-width: 880px) {
     .navbar {
         flex-direction: column;
