@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
             navWrapper.classList.toggle("active");
         });
 
-        // Fecha o menu ao clicar em qualquer link (melhora a usabilidade)
         const navLinks = document.querySelectorAll(".nav-links a");
         navLinks.forEach(link => {
             link.addEventListener("click", () => {
@@ -154,7 +153,8 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             const resp = document.getElementById("feedbackResponse");
             if (resp) {
-                resp.innerHTML = "<p style='color: #52b788; margin-top: 10px;'>Obrigado pela sua avaliação!</p>";
+                resp.style.display = "block";
+                resp.innerHTML = "<p style='color: #ffffff; margin: 0;'>Obrigado pela sua avaliação!</p>";
                 ratingForm.reset();
                 stars.forEach(s => {
                     s.classList.remove("fa-solid");
@@ -170,7 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             const resp = document.getElementById("contactResponse");
             if (resp) {
-                resp.innerHTML = "<p style='color: #52b788; margin-top: 10px;'>Mensagem enviada com sucesso!</p>";
+                resp.style.display = "block";
+                resp.innerHTML = "<p style='color: #ffffff; margin: 0;'>Mensagem enviada com sucesso!</p>";
                 contactForm.reset();
             }
         });
@@ -194,13 +195,28 @@ function changeDaltonismMode(mode) {
 // ==========================================
 let slideIndex = 0;
 
-function moveSlide(step) {
+function showSlide(index) {
     const slides = document.querySelectorAll(".slide-item");
+    const dots = document.querySelectorAll(".carousel-dots .dot");
     if (slides.length === 0) return;
 
-    slides[slideIndex].classList.remove("active");
-    slideIndex = (slideIndex + step + slides.length) % slides.length;
+    if (index >= slides.length) slideIndex = 0;
+    else if (index < 0) slideIndex = slides.length - 1;
+    else slideIndex = index;
+
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
     slides[slideIndex].classList.add("active");
+    if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+}
+
+function moveSlide(step) {
+    showSlide(slideIndex + step);
+}
+
+function currentSlide(n) {
+    showSlide(n);
 }
 
 // ==========================================
@@ -215,7 +231,7 @@ function filterMaterials() {
         const textContent = card.innerText.toLowerCase();
 
         if (nameAttr.toLowerCase().includes(input) || textContent.includes(input)) {
-            card.style.display = "block";
+            card.style.display = "flex";
         } else {
             card.style.display = "none";
         }
