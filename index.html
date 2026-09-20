@@ -3,308 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoJim - Reciclagem Eletrônica & Sustentabilidade</title>
-    
-    <!-- Fontes e Ícones -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>EcoJim - Reciclagem Eletrónica</title> <!--[cite: 15] -->
 
-    <!-- Chart.js para Gráficos Interativos -->
+    <!-- FAVICON (Logo na aba do navegador) -->
+    <link rel="icon" type="image/png" href="img/logo.png"> <!-- Altere o caminho se o seu ficheiro tiver outro nome/pasta -->
+
+    <!-- FONT AWESOME (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CHART.JS (Gráficos) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+    <!-- ESTILOS CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- SCRIPT JS -->
+    <script src="script.js" defer></script>
 </head>
 <body class="theme-dark">
 
-    <!-- SVG Filters para Simulação Real de Daltonismo -->
+    <!-- FILTROS SVG PARA MODO DALTONISMO -->
     <svg style="display: none;">
         <defs>
             <filter id="protanopia">
-                <feColorMatrix type="matrix" values="0.56667 0.43333 0.00000 0 0  0.55833 0.44167 0.00000 0 0  0.00000 0.24167 0.75833 0 0  0 0 0 1 0"/>
+                <feColorMatrix type="matrix" values="0.56667 0.43333 0 0 0  0.55833 0.44167 0 0 0  0 0.24167 0.75833 0 0  0 0 0 1 0"/>
             </filter>
             <filter id="deuteranopia">
-                <feColorMatrix type="matrix" values="0.625 0.375 0.000 0 0  0.700 0.300 0.000 0 0  0.000 0.300 0.700 0 0  0 0 0 1 0"/>
+                <feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/>
             </filter>
             <filter id="tritanopia">
-                <feColorMatrix type="matrix" values="0.95 0.05 0.00 0 0  0.00 0.43 0.57 0 0  0.00 0.47 0.53 0 0  0 0 0 1 0"/>
-            </filter>
-            <filter id="achromatopsia">
-                <feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 1 0"/>
+                <feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.43333 0.56667 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/>
             </filter>
         </defs>
     </svg>
 
-    <!-- Menu Superior Organizado -->
-    <header class="navbar">
-        <div class="nav-top">
-            <a href="#" class="logo-container">
-                <img src="logo.jpg" alt="Logo EcoJim" class="logo-icon">
-                <span class="logo-text">EcoJim</span>
-            </a>
-            
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <nav class="nav-wrapper" id="navWrapper">
-            <ul class="nav-links">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#escola-impacto">Projeto Izidoro</a></li>
-                <li><a href="#estatisticas">Panorama Brasil</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#descarte">Onde Descartar</a></li>
-                <li><a href="#sorocaba">Sorocaba</a></li>
-                <li><a href="#satisfacao">Avalie-nos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-
-            <div class="controls-wrapper">
-                <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
-                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+    <!-- NAVBAR / CABEÇALHO -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-top">
+                <a href="#" class="logo-container">
+                    <img src="img/logo.png" alt="Logo EcoJim" class="logo-icon">
+                    <span class="logo-text">EcoJim</span>
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
+            </div>
 
-                <div class="daltonism-selector">
-                    <i class="fa-solid fa-eye control-icon"></i>
-                    <select id="daltonismSelect" onchange="changeDaltonismMode(this.value)" class="select-control">
-                        <option value="none">Visão Padrão</option>
-                        <option value="protanopia">Protanopia (Vermelho)</option>
-                        <option value="deuteranopia">Deuteranopia (Verde)</option>
-                        <option value="tritanopia">Tritanopia (Azul)</option>
-                        <option value="achromatopsia">Acromatopsia (Preto/Branco)</option>
-                    </select>
+            <div class="nav-wrapper" id="navWrapper">
+                <ul class="nav-links">
+                    <li><a href="#projeto">Projeto</a></li>
+                    <li><a href="#escola">Escola Izidoro</a></li>
+                    <li><a href="#panorama">Panorama</a></li>
+                    <li><a href="#guia">Guia de Materiais</a></li>
+                    <li><a href="#sorocaba">Ecopontos</a></li>
+                    <li><a href="#avaliar">Avaliações</a></li>
+                    <li><a href="#contato">Contacto</a></li>
+                </ul>
+
+                <div class="controls-wrapper">
+                    <!-- Alternador de Tema -->
+                    <button class="btn-control" id="toggleTheme" title="Alternar Tema">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <!-- Selector de Daltonismo -->
+                    <div class="daltonism-selector">
+                        <i class="fa-solid fa-eye control-icon"></i>
+                        <select class="select-control" onchange="changeDaltonismMode(this.value)">
+                            <option value="none">Visão Normal</option>
+                            <option value="protanopia">Protanopia</option>
+                            <option value="deuteranopia">Deuteranopia</option>
+                            <option value="tritanopia">Tritanopia</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Banner Principal -->
+    <!-- HERO BANNER -->
     <section class="hero">
         <div class="hero-overlay">
-            <h1>Reciclagem Eletrônica Inteligente</h1> 
-            <h2>Conscientização, dados e descarte correto em Sorocaba para um futuro sustentável</h2>
+            <h1>Reciclagem Eletrónica Consciente</h1>
+            <h2>Transformando o descarte do lixo eletrónico em sustentabilidade para a nossa comunidade.</h2>
             <div class="hero-btns">
-                <a href="#descarte" class="btn-hero primary"><i class="fa-solid fa-location-dot"></i> Achar Ponto de Coleta</a>
-                <a href="#escola-impacto" class="btn-hero secondary"><i class="fa-solid fa-chart-line"></i> Impacto da Escola</a>
+                <a href="#guia" class="btn-hero primary">Onde Descartar</a>
+                <a href="#projeto" class="btn-hero secondary">Saber Mais</a>
             </div>
         </div>
     </section>
 
-    <!-- Conteúdo Principal -->
     <main class="container">
 
-        <!-- Sobre -->
-        <section id="sobre" class="section-card">
+        <!-- SEÇÃO: O PROJETO -->
+        <section id="projeto" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-leaf"></i> Sobre o Projeto</h2>
+                <h2><i class="fa-solid fa-leaf"></i> Sobre o Projeto EcoJim</h2>
                 <div class="underline"></div>
             </div>
-            <p>
-                O <strong>EcoJim</strong> é uma plataforma dedicada a mapear e facilitar o descarte consciente de resíduos eletroeletrônicos (REEE). Conectamos a população a pontos de coleta credenciados, divulgamos relatórios e fornecemos dados educativos alinhados com órgãos de preservação ambiental.
-            </p>
-            <br>
             <p class="highlight-info">
-                <i class="fa-solid fa-school"></i> <strong>Ponto de Coleta Principal:</strong> A <strong>Escola Joaquim Izidoro Marins</strong> é um ponto oficial de arrecadação de resíduos eletrônicos em Sorocaba! Traga seus equipamentos antigos ou sem uso e contribua para a sustentabilidade da nossa comunidade.
+                O <strong>EcoJim</strong> é uma iniciativa focada na conscientização e gestão correta do lixo eletrónico (E-Lixo). Promovemos ações educativas e organizamos pontos de recolha para evitar que componentes tóxicos contaminem o meio ambiente.
             </p>
         </section>
 
-        <!-- Impacto da Escola -->
-        <section id="escola-impacto" class="section-card">
+        <!-- SEÇÃO: ESCOLA IZIDORO -->
+        <section id="escola" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-trophy"></i> Conquistas do Projeto na Escola Izidoro Marins</h2>
+                <h2><i class="fa-solid fa-school"></i> Escola Izidoro - Arrecadação</h2>
                 <div class="underline"></div>
             </div>
-            <p>Acompanhe em tempo real o resultado da mobilização de alunos, professores e comunidade na reciclagem de eletroeletrônicos:</p>
-
+            
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <i class="fa-solid fa-weight-hanging"></i>
-                    <h3 id="kpi-peso">450 kg</h3>
-                    <p>Lixo Eletrônico Arrecadado</p>
+                    <h3>Total Arrecadado</h3>
+                    <p class="kpi-number">465 kg</p>
                 </div>
                 <div class="kpi-card">
-                    <i class="fa-solid fa-users"></i>
-                    <h3 id="kpi-alunos">1.200+</h3>
-                    <p>Pessoas Conscientizadas</p>
-                </div>
-                <div class="kpi-card">
-                    <i class="fa-solid fa-recycle"></i>
-                    <h3 id="kpi-meta">85%</h3>
-                    <p>da Meta Anual Atingida</p>
+                    <h3>Alunos Participantes</h3>
+                    <p class="kpi-number">320+</p>
                 </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="escolaChart"></canvas>
-            </div>
-            <p class="chart-caption">* Os dados acima são atualizados conforme as etapas de pesagem e destinação das campanhas da escola.</p>
-        </section>
-
-        <!-- Galeria de Fotos -->
-        <section id="galeria" class="section-card">
-            <div class="title-wrapper">
-                <h2><i class="fa-solid fa-images"></i> Galeria de Fotos do Projeto</h2>
-                <div class="underline"></div>
-            </div>
-            <p>Confira registros reais das arrecadações, oficinas e materiais coletados no projeto:</p>
-
+            <!-- Carrossel de Fotos -->
             <div class="carousel-container">
-                <div class="carousel-slide">
-                    <div class="slide-item active">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=80" alt="Arrecadação de Eletrônicos 1">
-                        <div class="slide-caption">Ponto de arrecadação e separação de peças</div>
-                    </div>
-                    <div class="slide-item">
-                        <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=900&q=80" alt="Oficina de Robótica e Reciclagem 2">
-                        <div class="slide-caption">Triagem de componentes e placas de circuitos</div>
-                    </div>
-                    <div class="slide-item">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Alunos e Comunidade Unida 3">
-                        <div class="slide-caption">Engajamento dos alunos no descarte correto</div>
-                    </div>
+                <div class="slide-item active">
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1000&q=80" alt="Recolha de E-Lixo">
+                    <div class="slide-caption">Ponto de recolha na entrada principal da escola</div>
                 </div>
-
+                <div class="slide-item">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80" alt="Componentes Eletrónicos">
+                    <div class="slide-caption">Triagem de componentes e placas de circuitos</div>
+                </div>
                 <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
                 <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
+
+            <!-- Gráfico da Escola -->
+            <div class="chart-container">
+                <canvas id="escolaChart"></canvas>
+            </div>
         </section>
 
-        <!-- Panorama Brasil -->
-        <section id="estatisticas" class="section-card">
+        <!-- SEÇÃO: PANORAMA BRASIL -->
+        <section id="panorama" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-chart-pie"></i> Panorama da Reciclagem no Brasil</h2>
+                <h2><i class="fa-solid fa-chart-pie"></i> Panorama no Brasil</h2>
                 <div class="underline"></div>
             </div>
-            <p class="section-desc">Dados extraídos de relatórios de impacto ambiental (Fonte: Global E-waste Monitor / Ministério do Meio Ambiente):</p>
-            
-            <div class="chart-container">
+            <p>Apenas uma pequena fração do lixo eletrónico produzido recebe a destinação correta.</p>
+            <div class="chart-container" style="margin-top: 20px;">
                 <canvas id="ewasteChart"></canvas>
             </div>
         </section>
 
-        <!-- Itens Aceitos -->
-        <section id="descarte" class="section-card">
+        <!-- SEÇÃO: GUIA DE MATERIAIS -->
+        <section id="guia" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-magnifying-glass-location"></i> O Que Pode Ser Descartado na Escola?</h2>
+                <h2><i class="fa-solid fa-magnifying-glass"></i> Guia de Materiais</h2>
                 <div class="underline"></div>
             </div>
-            <p>Aceitamos qualquer equipamento ou periférico que possua vínculo eletrônico. Pesquise abaixo:</p>
-
             <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: computador, mouse, teclado, pilha, celular, carregador)...">
+                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Pesquise por telemóvel, pilhas, monitores...">
             </div>
 
             <div class="materials-grid" id="materialsGrid">
-                <div class="material-card featured-card" data-name="escola joaquim izidoro marins todos residuos eletronicos ponto de coleta">
-                    <i class="fa-solid fa-school icon-mat"></i>
-                    <h4>Escola Joaquim Izidoro Marins</h4>
-                    <p><strong>Destinação:</strong> Ponto Oficial de Arrecadação e Triagem da Comunidade.</p>
-                    <span class="status-badge green">Recebe todos os itens eletrônicos</span>
+                <div class="material-card" data-name="celular smartphone telemovel">
+                    <h3>Telemóveis e Baterias</h3>
+                    <p>Contêm metais pesados. Devem ser entregues em pontos específicos.</p>
+                    <span class="status-badge green">Aceito</span>
                 </div>
-
-                <div class="material-card" data-name="computador pc desktop gabinete notebook servidor fonte">
-                    <i class="fa-solid fa-desktop icon-mat"></i>
-                    <h4>Computadores e Notebooks</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Gabinete, CPU, Fontes, Desktops).</p>
-                    <span class="status-badge green">Aceito na Escola</span>
+                <div class="material-card" data-name="computador notebook pc memoria">
+                    <h3>Computadores e Placas</h3>
+                    <p>Possuem componentes recicláveis com alto valor de reaproveitamento.</p>
+                    <span class="status-badge green">Aceito</span>
                 </div>
-
-                <div class="material-card" data-name="teclado mouse perifericos fone headset cabo carregador">
-                    <i class="fa-solid fa-keyboard icon-mat"></i>
-                    <h4>Teclados, Mouses e Cabos</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Periféricos, fones, conectores e cabos).</p>
-                    <span class="status-badge green">Aceito na Escola</span>
-                </div>
-
-                <div class="material-card" data-name="celular smartphone tablet carregador fonte de celular">
-                    <i class="fa-solid fa-mobile-screen icon-mat"></i>
-                    <h4>Smartphones e Tablets</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Operadoras parceiras.</p>
-                    <span class="status-badge green">Aceito na Escola</span>
-                </div>
-
-                <div class="material-card" data-name="bateria pilha acumulador nobreak powerbank">
-                    <i class="fa-solid fa-battery-full icon-mat"></i>
-                    <h4>Pilhas e Baterias</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Coletores identificados).</p>
-                    <span class="status-badge yellow">Entregar isoladas ou secas</span>
-                </div>
-
-                <div class="material-card" data-name="placa mae memoria ram hd ssd placa de video pecas eletronicas">
-                    <i class="fa-solid fa-microchip icon-mat"></i>
-                    <h4>Componentes e Placas Eletrônicas</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Placas de circuito, HDs, memórias).</p>
-                    <span class="status-badge green">Alta prioridade de reciclagem</span>
+                <div class="material-card" data-name="lampada fluorescente">
+                    <h3>Lâmpadas Fluorescentes</h3>
+                    <p>Requerem tratamento especial devido ao vapor de mercúrio.</p>
+                    <span class="status-badge yellow">Atenção Especial</span>
                 </div>
             </div>
         </section>
 
-        <!-- Sorocaba -->
+        <!-- SEÇÃO: ECOPONTOS SOROCABA -->
         <section id="sorocaba" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-map-location-dot"></i> Descarte Eletrônico em Sorocaba - SP</h2>
+                <h2><i class="fa-solid fa-location-dot"></i> Ecopontos em Sorocaba</h2>
                 <div class="underline"></div>
             </div>
-            <p>Além da <strong>Escola Joaquim Izidoro Marins</strong>, Sorocaba conta com suporte público e parcerias para a destinação correta de REEE:</p>
             <ul class="sorocaba-list">
-                <li><i class="fa-solid fa-check-circle"></i> <strong>Ecopontos Municipais:</strong> Locais mantidos pela Prefeitura de Sorocaba para recepção de grandes volumes e resíduos diversos.</li>
-                <li><i class="fa-solid fa-check-circle"></i> <strong>SEMA (Secretaria do Meio Ambiente de Sorocaba):</strong> Promove mutirões periódicos de lixo eletrônico na cidade.</li>
-                <li><i class="fa-solid fa-check-circle"></i> <strong>Parceria Escolar:</strong> Trazer seu equipamento à Escola Izidoro Marins fortalece os projetos socioambientais locais de Sorocaba.</li>
+                <li><strong>Ecoponto Vila Athanázio:</strong> Rua Dr. Américo Figueiredo</li>
+                <li><strong>Ecoponto Parque das Laranjeiras:</strong> Rua Mário Soave</li>
+                <li><strong>Cooperativa Metatarse:</strong> Atendimento para grandes volumes</li>
             </ul>
         </section>
 
-        <!-- Avaliação de Satisfação -->
-        <section id="satisfacao" class="section-card highlight-box">
+        <!-- SEÇÃO: AVALIAÇÃO -->
+        <section id="avaliar" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>
+                <h2><i class="fa-solid fa-star"></i> Avalie o Nosso Projeto</h2>
                 <div class="underline"></div>
             </div>
-            <p>Sua opinião é fundamental para melhorarmos nossas ferramentas de conscientização.</p>
-            
             <form id="ratingForm" class="rating-form">
-                <label>Como você avalia a facilidade de encontrar informações no site?</label>
+                <label>Como avalia a facilidade de encontrar informações no site?</label>
                 <div class="star-rating">
-                    <i class="fa-star fa-regular" data-value="1"></i>
-                    <i class="fa-star fa-regular" data-value="2"></i>
-                    <i class="fa-star fa-regular" data-value="3"></i>
-                    <i class="fa-star fa-regular" data-value="4"></i>
-                    <i class="fa-star fa-regular" data-value="5"></i>
+                    <i class="fa-regular fa-star" data-value="1"></i>
+                    <i class="fa-regular fa-star" data-value="2"></i>
+                    <i class="fa-regular fa-star" data-value="3"></i>
+                    <i class="fa-regular fa-star" data-value="4"></i>
+                    <i class="fa-regular fa-star" data-value="5"></i>
                 </div>
-
-                <input type="text" id="nomeRating" placeholder="Seu nome" required class="input-field">
-                <textarea id="feedbackText" rows="3" placeholder="Deixe uma sugestão ou comentário..." required></textarea>
-                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Avaliação</button>
+                <textarea rows="3" class="input-field" placeholder="Deixe o seu comentário (opcional)..."></textarea>
+                <button type="submit" class="submit-btn">Enviar Avaliação</button>
             </form>
-            <div id="feedbackResponse" class="feedback-msg"></div>
+            <div id="feedbackResponse"></div>
         </section>
 
-        <!-- Contato -->
+        <!-- SEÇÃO: CONTACTO -->
         <section id="contato" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
+                <h2><i class="fa-solid fa-envelope"></i> Contacte-nos</h2>
                 <div class="underline"></div>
             </div>
-            <form class="contact-form" id="form">
-                <input type="text" placeholder="Seu nome" required id="nome" name="nome">
-                <input type="email" placeholder="Seu e-mail" required id="email" name="email">
-                <textarea rows="4" placeholder="Sua mensagem" required id="mensagem" name="mensagem"></textarea>
-                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
+            <form id="form" class="contact-form">
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu E-mail" required>
+                <textarea rows="4" placeholder="Sua Mensagem..." required></textarea>
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
             </form>
-            <div id="contactResponse" class="feedback-msg"></div>
+            <div id="contactResponse"></div>
         </section>
 
     </main>
 
-    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2026 EcoJim Reciclagem Eletrônica - Escola Joaquim Izidoro Marins - Sorocaba/SP.</p>
+        <p>&copy; EcoJim - Projeto de Conscientização sobre Reciclagem Eletrónica.</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
