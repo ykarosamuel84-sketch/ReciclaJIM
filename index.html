@@ -14,6 +14,9 @@
     <!-- Chart.js para Gráficos Interativos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,16 +24,21 @@
     <!-- Menu Superior -->
     <header class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-recycle logo-icon"></i>
+            <!-- 
+                MUDANÇA DE LOGO:
+                Substitua 'logo.png' pelo caminho/nome real da imagem da sua logo!
+            -->
+            <img src="logo.png" alt="EcoJim Logo" class="logo-img">
             <span>EcoJim</span>
         </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#estatisticas">Estatísticas</a></li>
-                <li><a href="#noticias">Notícias</a></li>
+                <li><a href="#escola-impacto">Projeto Izidoro</a></li>
+                <li><a href="#estatisticas">Panorama Brasil</a></li>
+                <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#descarte">Onde Descartar</a></li>
-                <li><a href="#parceiros">Parceiros</a></li>
+                <li><a href="#sorocaba">Sorocaba</a></li>
                 <li><a href="#satisfacao">Avalie-nos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
@@ -45,10 +53,10 @@
     <section class="hero">
         <div class="hero-overlay">
             <h1>Reciclagem Eletrônica Inteligente</h1> 
-            <h2>Conscientização, dados e descarte correto para um futuro sustentável</h2>
+            <h2>Conscientização, dados e descarte correto em Sorocaba para um futuro sustentável</h2>
             <div class="hero-btns">
                 <a href="#descarte" class="btn-hero primary"><i class="fa-solid fa-location-dot"></i> Achar Ponto de Coleta</a>
-                <a href="#estatisticas" class="btn-hero secondary"><i class="fa-solid fa-chart-line"></i> Ver Estatísticas</a>
+                <a href="#escola-impacto" class="btn-hero secondary"><i class="fa-solid fa-chart-line"></i> Impacto da Escola</a>
             </div>
         </div>
     </section>
@@ -67,11 +75,85 @@
             </p>
             <br>
             <p class="highlight-info">
-                <i class="fa-solid fa-school"></i> <strong>Ponto de Coleta Principal:</strong> A <strong>Escola Joaquim Izidoro Marins</strong> agora é um ponto de arrecadação de resíduos eletrônicos! Traga seus equipamentos antigos ou sem uso e contribua para a sustentabilidade da nossa comunidade.
+                <i class="fa-solid fa-school"></i> <strong>Ponto de Coleta Principal:</strong> A <strong>Escola Joaquim Izidoro Marins</strong> é um ponto oficial de arrecadação de resíduos eletrônicos em Sorocaba! Traga seus equipamentos antigos ou sem uso e contribua para a sustentabilidade da nossa comunidade.
             </p>
         </section>
 
-        <!-- Página de Notícias com Gráficos -->
+        <!-- SEÇÃO NOVA: Impacto e Conquistas da Escola Joaquim Izidoro Marins -->
+        <section id="escola-impacto" class="section-card">
+            <div class="title-wrapper">
+                <h2><i class="fa-solid fa-trophy"></i> Conquistas do Projeto na Escola Izidoro Marins</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Acompanhe em tempo real o resultado da mobilização de alunos, professores e comunidade na reciclagem de eletroeletrônicos:</p>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <i class="fa-solid fa-weight-hanging"></i>
+                    <h3 id="kpi-peso">450 kg</h3>
+                    <p>Lixo Eletrônico Arrecadado</p>
+                </div>
+                <div class="kpi-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h3 id="kpi-alunos">1.200+</h3>
+                    <p>Pessoas Conscientizadas</p>
+                </div>
+                <div class="kpi-card">
+                    <i class="fa-solid fa-recycle"></i>
+                    <h3 id="kpi-meta">85%</h3>
+                    <p>da Meta Anual Atingida</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="escolaChart"></canvas>
+            </div>
+            <p class="chart-caption">* Os dados acima são atualizados conforme as etapas de pesagem e destinação das campanhas da escola.</p>
+        </section>
+
+        <!-- SEÇÃO NOVA: Carrossel de Fotos do Projeto -->
+        <section id="galeria" class="section-card">
+            <div class="title-wrapper">
+                <h2><i class="fa-solid fa-images"></i> Galeria de Fotos do Projeto</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Confira registros reais das arrecadações, oficinas e materiais coletados no projeto:</p>
+
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <!-- 
+                        COLOQUE SUAS FOTOS AQUI:
+                        Substitua as URLs de exemplo 'https://images.unsplash...' pelos nomes das suas fotos
+                        Exemplo: src="fotos/arrecadacao1.jpg"
+                    -->
+                    <div class="slide-item active">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=80" alt="Arrecadação de Eletrônicos 1">
+                        <div class="slide-caption">Ponto de arrecadação e separação de peças</div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=900&q=80" alt="Oficina de Robótica e Reciclagem 2">
+                        <div class="slide-caption">Triagem de componentes e placas de circuitos</div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Alunos e Comunidade Unida 3">
+                        <div class="slide-caption">Engajamento dos alunos no descarte correto</div>
+                    </div>
+                </div>
+
+                <!-- Botões do Carrossel -->
+                <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <!-- Indicadores de Pontinhos -->
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panorama Brasil com Gráfico -->
         <section id="estatisticas" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-chart-pie"></i> Panorama da Reciclagem no Brasil</h2>
@@ -107,7 +189,7 @@
                     <div class="card-content">
                         <span class="badge">Impacto</span>
                         <h3>O perigo dos metais pesados no lixo comum</h3>
-                        <p>Chumbo, mercúrio e cádmo presentes em placas de circuito exigem manufatura reversa especializada.</p>
+                        <p>Chumbo, mercúrio e cádmio presentes em placas de circuito exigem manufatura reversa especializada.</p>
                         <a href="https://www.gov.br/mma/pt-br" target="_blank" class="read-btn">Fonte: Ministério do Meio Ambiente <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </article>
@@ -117,52 +199,79 @@
         <!-- Banco de Dados de Materiais e Locais de Descarte -->
         <section id="descarte" class="section-card">
             <div class="title-wrapper">
-                <h2><i class="fa-solid fa-magnifying-glass-location"></i> Banco de Dados de Descarte</h2>
+                <h2><i class="fa-solid fa-magnifying-glass-location"></i> O Que Pode Ser Descartado na Escola?</h2>
                 <div class="underline"></div>
             </div>
-            <p>Selecione o tipo de equipamento ou busque pelo seu material para saber como e onde descartar:</p>
+            <p>Aceitamos qualquer equipamento ou periférico que possua vínculo eletrônico. Pesquise abaixo:</p>
 
             <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: escola, celular, TV, notebook, bateria)...">
+                <input type="text" id="searchInput" onkeyup="filterMaterials()" placeholder="Busque por produto (ex: computador, mouse, teclado, pilha, celular, carregador)...">
             </div>
 
             <div class="materials-grid" id="materialsGrid">
-                <!-- PONTO DE COLETA ESCOLA JOAQUIM IZIDORO MARINS -->
                 <div class="material-card featured-card" data-name="escola joaquim izidoro marins todos residuos eletronicos ponto de coleta">
                     <i class="fa-solid fa-school icon-mat"></i>
                     <h4>Escola Joaquim Izidoro Marins</h4>
-                    <p><strong>Destinação:</strong> Ponto Oficial de Arrecadação de Lixo Eletrônico.</p>
-                    <span class="status-badge green">Recebe diversos resíduos eletrônicos</span>
+                    <p><strong>Destinação:</strong> Ponto Oficial de Arrecadação e Triagem da Comunidade.</p>
+                    <span class="status-badge green">Recebe todos os itens eletrônicos</span>
                 </div>
 
-                <div class="material-card" data-name="celular smartphone tablet">
+                <div class="material-card" data-name="computador pc desktop gabinete notebook servidor fonte">
+                    <i class="fa-solid fa-desktop icon-mat"></i>
+                    <h4>Computadores e Notebooks</h4>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Gabinete, CPU, Fontes, Desktops).</p>
+                    <span class="status-badge green">Aceito na Escola</span>
+                </div>
+
+                <div class="material-card" data-name="teclado mouse perifericos fone headset cabo carregador">
+                    <i class="fa-solid fa-keyboard icon-mat"></i>
+                    <h4>Teclados, Mouses e Cabos</h4>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Periféricos, fones, conectores e cabos).</p>
+                    <span class="status-badge green">Aceito na Escola</span>
+                </div>
+
+                <div class="material-card" data-name="celular smartphone tablet carregador fonte de celular">
                     <i class="fa-solid fa-mobile-screen icon-mat"></i>
                     <h4>Smartphones e Tablets</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Operadoras de Telefonia.</p>
-                    <span class="status-badge green">Aceito em 100% dos postos</span>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Operadoras parceiras.</p>
+                    <span class="status-badge green">Aceito na Escola</span>
                 </div>
 
-                <div class="material-card" data-name="bateria pilha carregador">
+                <div class="material-card" data-name="bateria pilha acumulador nobreak powerbank">
                     <i class="fa-solid fa-battery-full icon-mat"></i>
                     <h4>Pilhas e Baterias</h4>
-                    <p><strong>Destinação:</strong> Coretores em supermercados, farmácias e na Escola Joaquim Izidoro Marins.</p>
-                    <span class="status-badge yellow">Requer embalagem isolante</span>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Coletores identificados).</p>
+                    <span class="status-badge yellow">Entregar isoladas ou secas</span>
                 </div>
 
-                <div class="material-card" data-name="televisao monitor tv lcd crt">
+                <div class="material-card" data-name="placa mae memoria ram hd ssd placa de video pecas eletronicas">
+                    <i class="fa-solid fa-microchip icon-mat"></i>
+                    <h4>Componentes e Placas Eletrônicas</h4>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins (Placas de circuito, HDs, memórias).</p>
+                    <span class="status-badge green">Alta prioridade de reciclagem</span>
+                </div>
+
+                <div class="material-card" data-name="televisao monitor tv lcd crt tubos led">
                     <i class="fa-solid fa-tv icon-mat"></i>
                     <h4>Monitores e TVs</h4>
-                    <p><strong>Destinação:</strong> Ecopontos Municipais / Centros de Triagem Especializados.</p>
-                    <span class="status-badge green">Agendamento recomendado</span>
-                </div>
-
-                <div class="material-card" data-name="computador notebook pc placa memoria">
-                    <i class="fa-solid fa-laptop icon-mat"></i>
-                    <h4>Computadores e Placas</h4>
-                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Cooperativas de reciclagem (Ex: GreenTech).</p>
-                    <span class="status-badge green">Possui valor de logística reversa</span>
+                    <p><strong>Destinação:</strong> Escola Joaquim Izidoro Marins / Ecopontos Municipais de Sorocaba.</p>
+                    <span class="status-badge green">Aceito na Escola</span>
                 </div>
             </div>
+        </section>
+
+        <!-- SEÇÃO NOVA: Reciclagem Eletrônica em Sorocaba -->
+        <section id="sorocaba" class="section-card">
+            <div class="title-wrapper">
+                <h2><i class="fa-solid fa-map-location-dot"></i> Descarte Eletrônico em Sorocaba - SP</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Além da <strong>Escola Joaquim Izidoro Marins</strong>, Sorocaba conta com suporte público e parcerias para a destinação correta de REEE:</p>
+            <ul class="sorocaba-list">
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Ecopontos Municipais:</strong> Locais mantidos pela Prefeitura de Sorocaba para recepção de grandes volumes e resíduos diversos.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>SEMA (Secretaria do Meio Ambiente de Sorocaba):</strong> Promove mutirões periódicos de lixo eletrônico na cidade.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Parceria Escolar:</strong> Trazer seu equipamento à Escola Izidoro Marins fortalece os projetos socioambientais locais de Sorocaba.</li>
+            </ul>
         </section>
 
         <!-- Parceiros -->
@@ -174,7 +283,7 @@
             <div class="partner-grid">
                 <div class="partner-card">
                     <h4>Escola Joaquim Izidoro Marins <i class="fa-solid fa-school"></i></h4>
-                    <p>Ponto de arrecadação comunitária e conscientização ambiental para alunos e comunidade.</p>
+                    <p>Ponto de arrecadação comunitária e conscientização ambiental em Sorocaba.</p>
                 </div>
                 <a href="https://www.greentech.com.br" target="_blank" class="partner-card">
                     <h4>GreenTech Soluções <i class="fa-solid fa-external-link"></i></h4>
@@ -201,8 +310,9 @@
                     <i class="fa-star fa-regular" data-value="5"></i>
                 </div>
 
+                <input type="text" id="nomeRating" placeholder="Seu nome" required class="input-field">
                 <textarea id="feedbackText" rows="3" placeholder="Deixe uma sugestão ou comentário..." required></textarea>
-                <button type="submit" class="submit-btn">Enviar Avaliação</button>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Avaliação</button>
             </form>
             <div id="feedbackResponse" class="feedback-msg"></div>
         </section>
@@ -213,122 +323,23 @@
                 <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
                 <div class="underline"></div>
             </div>
-            <form class="contact-form" action="#" method="POST" id="form">
+            <form class="contact-form" id="form">
                 <input type="text" placeholder="Seu nome" required id="nome" name="nome">
                 <input type="email" placeholder="Seu e-mail" required id="email" name="email">
                 <textarea rows="4" placeholder="Sua mensagem" required id="mensagem" name="mensagem"></textarea>
-                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
             </form>
+            <div id="contactResponse" class="feedback-msg"></div>
         </section>
 
     </main>
 
     <!-- Rodapé -->
     <footer>
-        <p>&copy; 2026 EcoJim Reciclagem Eletrônica - Todos os direitos reservados.</p>
+        <p>&copy; 2026 EcoJim Reciclagem Eletrônica - Escola Joaquim Izidoro Marins - Sorocaba/SP.</p>
     </footer>
 
-    <!-- Scripts do Gráfico, Busca, Avaliação e Modo Daltônico -->
-    <script>
-        // 1. Inicialização do Gráfico Chart.js
-        let ewasteChart;
-        const ctx = document.getElementById('ewasteChart').getContext('2d');
-        
-        function renderChart(c1 = '#e76f51', c2 = '#52b788') {
-            if (ewasteChart) ewasteChart.destroy();
-            ewasteChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['2021', '2022', '2023', '2024', '2025 (Est.)'],
-                    datasets: [
-                        {
-                            label: 'Lixo Eletrônico Gerado (Milhares de Toneladas)',
-                            data: [2200, 2350, 2400, 2550, 2680],
-                            backgroundColor: c1
-                        },
-                        {
-                            label: 'Lixo Eletrônico Reciclado (Milhares de Toneladas)',
-                            data: [65, 90, 140, 210, 310],
-                            backgroundColor: c2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { labels: { color: '#fff' } }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#aaa' }, grid: { color: '#333' } },
-                        y: { ticks: { color: '#aaa' }, grid: { color: '#333' } }
-                    }
-                }
-            });
-        }
-
-        renderChart();
-
-        // 2. Filtro de Pesquisa de Materiais
-        function filterMaterials() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('material-card');
-
-            for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].getAttribute('data-name');
-                if (name.includes(input)) {
-                    cards[i].style.display = "flex";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
-        }
-
-        // 3. Sistema de Estrelas e Registro de Satisfação
-        const stars = document.querySelectorAll('.star-rating i');
-        let selectedRating = 0;
-
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                selectedRating = star.getAttribute('data-value');
-                stars.forEach((s, idx) => {
-                    if (idx < selectedRating) {
-                        s.classList.remove('fa-regular');
-                        s.classList.add('fa-solid', 'active');
-                    } else {
-                        s.classList.remove('fa-solid', 'active');
-                        s.classList.add('fa-regular');
-                    }
-                });
-            });
-        });
-
-        document.getElementById('ratingForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (selectedRating === 0) {
-                alert('Por favor, selecione uma nota de 1 a 5 estrelas!');
-                return;
-            }
-            const msg = document.getElementById('feedbackResponse');
-            msg.innerText = `Obrigado pelo feedback! Registramos sua avaliação de ${selectedRating} estrelas com sucesso.`;
-            msg.style.display = 'block';
-            document.getElementById('ratingForm').reset();
-            stars.forEach(s => { s.classList.remove('fa-solid', 'active'); s.classList.add('fa-regular'); });
-        });
-
-        // 4. Alternância do Modo Daltônico
-        function toggleModoDaltonico() {
-            document.body.classList.toggle('modo-daltonico');
-            const isDaltonico = document.body.classList.contains('modo-daltonico');
-            
-            // Atualiza gráfico com cores acessíveis (Azul e Amarelo em vez de Verde e Vermelho/Laranja)
-            if (isDaltonico) {
-                renderChart('#0077b6', '#e9c46a');
-            } else {
-                renderChart('#e76f51', '#52b788');
-            }
-        }
-    </script>
+    <!-- Script principal com toda a lógica JS integrada -->
     <script src="script.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>
