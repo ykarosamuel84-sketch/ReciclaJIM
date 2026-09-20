@@ -71,8 +71,11 @@ body {
 }
 
 .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--accent-green);
 }
 
 .logo-text {

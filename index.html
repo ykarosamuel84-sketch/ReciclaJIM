@@ -43,13 +43,11 @@
         </defs>
     </svg>
 
-    <!-- Menu Superior Corrigido e Espaçoso -->
+    <!-- Menu Superior Atualizado com a Logo -->
     <header class="navbar">
         <a href="#" class="logo-container">
-            <!-- Logo Vetorial SVG Integrada para Evitar Erros de Carregamento -->
-            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#52b788"/>
-            </svg>
+            <!-- Logo usando a imagem enviada ao GitHub -->
+            <img src="Gemini_Generated_Image_azwu4vazwu4vazwu_2.jpg" alt="Logo EcoJim" class="logo-icon">
             <span class="logo-text">EcoJim</span>
         </a>
 
@@ -68,12 +66,10 @@
 
         <!-- Acessibilidade e Alternância de Temas -->
         <div class="controls-wrapper">
-            <!-- Botão Alternar Tema Claro/Escuro -->
             <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
 
-            <!-- Seletor de Daltonismo -->
             <div class="daltonism-selector">
                 <i class="fa-solid fa-eye control-icon"></i>
                 <select id="daltonismSelect" onchange="changeDaltonismMode(this.value)" class="select-control">
