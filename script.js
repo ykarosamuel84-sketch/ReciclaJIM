@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     // 1. MENU MOBILE
     const mobileToggle = document.getElementById("mobileToggle");
     const navWrapper = document.getElementById("navWrapper");
@@ -109,15 +110,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderCharts();
 
-    // 4. AVALIAÇÃO DE ESTRELAS
+    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM FORMSPREE
     const stars = document.querySelectorAll(".star-rating i");
+    const notaInput = document.getElementById("notaInput");
     let selectedRating = 0;
 
     stars.forEach((star) => {
         star.addEventListener("click", function () {
-            selectedRating = this.getAttribute("data-value");
+            selectedRating = parseInt(this.getAttribute("data-value"));
+            
+            if (notaInput) {
+                notaInput.value = selectedRating;
+            }
+
             stars.forEach((s) => {
-                if (s.getAttribute("data-value") <= selectedRating) {
+                if (parseInt(s.getAttribute("data-value")) <= selectedRating) {
                     s.classList.remove("fa-regular");
                     s.classList.add("fa-solid");
                 } else {
@@ -129,37 +136,105 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const ratingForm = document.getElementById("ratingForm");
+    const btnSubmitRating = document.getElementById("btnSubmitRating");
+
     if (ratingForm) {
-        ratingForm.addEventListener("submit", function (e) {
+        ratingForm.addEventListener("submit", async function (e) {
             e.preventDefault();
+
+            if (selectedRating === 0) {
+                alert("Por favor, escolha uma nota clicando em uma das estrelas!");
+                return;
+            }
+
             const resp = document.getElementById("feedbackResponse");
-            if (resp) {
-                resp.style.display = "block";
-                resp.innerHTML = "<p style='color: #ffffff; margin: 0;'>Obrigado pela sua avaliação!</p>";
-                ratingForm.reset();
-                stars.forEach(s => {
-                    s.classList.remove("fa-solid");
-                    s.classList.add("fa-regular");
+            const formData = new FormData(ratingForm);
+
+            btnSubmitRating.disabled = true;
+            btnSubmitRating.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+            try {
+                const response = await fetch(ratingForm.action, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
+
+                if (response.ok) {
+                    resp.className = "feedback-msg";
+                    resp.style.display = "block";
+                    resp.innerHTML = "<p>Obrigado! Sua avaliação foi enviada com sucesso.</p>";
+
+                    ratingForm.reset();
+                    selectedRating = 0;
+                    if (notaInput) notaInput.value = 0;
+
+                    stars.forEach(s => {
+                        s.classList.remove("fa-solid");
+                        s.classList.add("fa-regular");
+                    });
+                } else {
+                    throw new Error("Erro de resposta do Formspree");
+                }
+            } catch (error) {
+                console.error("Erro no Formspree:", error);
+                resp.className = "feedback-msg error";
+                resp.style.display = "block";
+                resp.innerHTML = "<p>Erro ao enviar avaliação. Verifique a conexão e tente novamente.</p>";
+            } finally {
+                btnSubmitRating.disabled = false;
+                btnSubmitRating.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Avaliação';
             }
         });
     }
 
-    const contactForm = document.getElementById("form");
+    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM FORMSPREE
+    const contactForm = document.getElementById("contactForm");
+    const btnSubmitContact = document.getElementById("btnSubmitContact");
+
     if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
+        contactForm.addEventListener("submit", async function (e) {
             e.preventDefault();
+
             const resp = document.getElementById("contactResponse");
-            if (resp) {
+            const formData = new FormData(contactForm);
+
+            btnSubmitContact.disabled = true;
+            btnSubmitContact.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    resp.className = "feedback-msg";
+                    resp.style.display = "block";
+                    resp.innerHTML = "<p>Mensagem enviada com sucesso! Responderemos em breve.</p>";
+                    contactForm.reset();
+                } else {
+                    throw new Error("Erro de resposta do Formspree");
+                }
+            } catch (error) {
+                console.error("Erro no Formspree:", error);
+                resp.className = "feedback-msg error";
                 resp.style.display = "block";
-                resp.innerHTML = "<p style='color: #ffffff; margin: 0;'>Mensagem enviada com sucesso!</p>";
-                contactForm.reset();
+                resp.innerHTML = "<p>Erro ao enviar mensagem. Tente novamente mais tarde.</p>";
+            } finally {
+                btnSubmitContact.disabled = false;
+                btnSubmitContact.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';
             }
         });
     }
 });
 
-// 5. MODO DALTONISMO GLOBAL
+// 6. MODO DALTONISMO GLOBAL
 function changeDaltonismMode(mode) {
     const htmlElement = document.documentElement;
     if (mode === "none") {
@@ -169,7 +244,7 @@ function changeDaltonismMode(mode) {
     }
 }
 
-// 6. CARROSSEL DE FOTOS
+// 7. CARROSSEL DE FOTOS
 let slideIndex = 0;
 
 function showSlide(index) {
@@ -196,7 +271,7 @@ function currentSlide(n) {
     showSlide(n);
 }
 
-// 7. FILTRO DE BUSCA
+// 8. FILTRO DE BUSCA DE MATERIAIS
 function filterMaterials() {
     const input = document.getElementById("searchInput").value.toLowerCase();
     const cards = document.querySelectorAll(".material-card");
