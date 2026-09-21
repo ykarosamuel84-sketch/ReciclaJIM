@@ -73,7 +73,7 @@ body {
 }
 
 .logo-img {
-    height: 52px;
+    height: 52px; /* Logo maior e em destaque */
     width: auto;
     max-width: 150px;
     object-fit: contain;
@@ -155,7 +155,7 @@ body {
     transform: scale(1.05);
 }
 
-/* SELETOR DE DALTONISMO */
+/* SELETOR DE DALTONISMO COM CLIQUE NA ÁREA INTEIRA */
 .daltonism-selector {
     position: relative;
     display: inline-flex;
@@ -493,7 +493,7 @@ body {
     margin-right: 8px;
 }
 
-/* FORMULÁRIOS & ESTRELAS */
+/* FORMULÁRIOS & AVALIAÇÃO */
 .star-rating {
     display: flex;
     gap: 10px;
@@ -534,12 +534,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s;
-}
-
-.submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .feedback-msg {
@@ -551,10 +545,6 @@ body {
     display: none;
 }
 
-.feedback-msg.error {
-    background-color: #a71d2a;
-}
-
 footer {
     text-align: center;
     padding: 20px;
@@ -564,13 +554,47 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* RESPONSIVIDADE */
+/* FILTROS DE DALTONISMO */
+body.filter-protanopia { filter: url(#protanopia); }
+body.filter-deuteranopia { filter: url(#deuteranopia); }
+body.filter-tritanopia { filter: url(#tritanopia); }
+body.filter-achromatopsia { filter: url(#achromatopsia); }
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
 @media (max-width: 1024px) {
-    .navbar { flex-wrap: wrap; }
-    .mobile-toggle-btn { display: block; order: 2; }
-    .controls-wrapper { order: 3; }
-    .nav-wrapper { display: none; width: 100%; order: 4; }
-    .nav-wrapper.active { display: flex; }
-    .nav-links { flex-direction: column; width: 100%; gap: 8px; padding-top: 10px; }
-    .nav-links a { display: block; text-align: center; padding: 8px; }
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .mobile-toggle-btn {
+        display: block;
+        order: 2;
+    }
+
+    .controls-wrapper {
+        order: 3;
+    }
+
+    .nav-wrapper {
+        display: none;
+        width: 100%;
+        order: 4;
+    }
+
+    .nav-wrapper.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+        padding-top: 10px;
+    }
+
+    .nav-links a {
+        display: block;
+        text-align: center;
+        padding: 8px;
+    }
 }

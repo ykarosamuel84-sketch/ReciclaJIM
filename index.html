@@ -38,15 +38,18 @@
 
     <!-- Header / Navbar Principal -->
     <header class="navbar">
+        <!-- Esquerda: Logo Aumentado -->
         <a href="#" class="logo-container">
             <img src="logo.jpg" alt="EcoJim Logo" class="logo-img">
             <span class="logo-text">EcoJim</span>
         </a>
 
+        <!-- Botão Mobile -->
         <button id="mobileToggle" class="mobile-toggle-btn" aria-label="Abrir Menu">
             <i class="fa-solid fa-bars"></i>
         </button>
 
+        <!-- Centro: Nav Links -->
         <nav class="nav-wrapper" id="navWrapper">
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
@@ -60,6 +63,7 @@
             </ul>
         </nav>
 
+        <!-- Direita: Controles de Tema e Acessibilidade -->
         <div class="controls-wrapper">
             <button id="toggleTheme" class="btn-control" title="Alternar Tema Claro/Escuro">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
@@ -260,7 +264,7 @@
             </ul>
         </section>
 
-        <!-- Avaliação com Formspree -->
+        <!-- Avaliação -->
         <section id="satisfacao" class="section-card highlight-box">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>
@@ -268,12 +272,8 @@
             </div>
             <p>Sua opinião é fundamental para melhorarmos nossas ferramentas de conscientização.</p>
             
-            <form id="ratingForm" action="https://formspree.io/f/SEU_FORM_ID_AQUI" method="POST" class="rating-form">
+            <form id="ratingForm" class="rating-form">
                 <label>Como você avalia a facilidade de encontrar informações no site?</label>
-                
-                <!-- Campo oculto para enviar a quantidade de estrelas -->
-                <input type="hidden" name="nota_estrelas" id="notaInput" value="0">
-
                 <div class="star-rating">
                     <i class="fa-star fa-regular" data-value="1"></i>
                     <i class="fa-star fa-regular" data-value="2"></i>
@@ -282,29 +282,24 @@
                     <i class="fa-star fa-regular" data-value="5"></i>
                 </div>
 
-                <input type="text" id="nomeRating" name="nome" placeholder="Seu nome" required class="input-field">
-                <textarea id="feedbackText" name="mensagem" rows="3" placeholder="Deixe uma sugestão ou comentário..." required></textarea>
-                
-                <button type="submit" class="submit-btn" id="btnSubmitRating">
-                    <i class="fa-solid fa-paper-plane"></i> Enviar Avaliação
-                </button>
+                <input type="text" id="nomeRating" placeholder="Seu nome" required class="input-field">
+                <textarea id="feedbackText" rows="3" placeholder="Deixe uma sugestão ou comentário..." required></textarea>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Avaliação</button>
             </form>
             <div id="feedbackResponse" class="feedback-msg"></div>
         </section>
 
-        <!-- Contato com Formspree -->
+        <!-- Contato -->
         <section id="contato" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
                 <div class="underline"></div>
             </div>
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/SEU_FORM_ID_AQUI" method="POST">
+            <form class="contact-form" id="form">
                 <input type="text" placeholder="Seu nome" required id="nome" name="nome">
                 <input type="email" placeholder="Seu e-mail" required id="email" name="email">
                 <textarea rows="4" placeholder="Sua mensagem" required id="mensagem" name="mensagem"></textarea>
-                <button type="submit" class="submit-btn" id="btnSubmitContact">
-                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
-                </button>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
             </form>
             <div id="contactResponse" class="feedback-msg"></div>
         </section>
