@@ -1,3 +1,6 @@
+// Inicialize o EmailJS com a sua Public Key
+emailjs.init("0UHGn2DYsTSiu7oVA");
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // 1. MENU MOBILE
@@ -110,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderCharts();
 
-    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM FORMSUBMIT
+    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM EMAILJS
     const stars = document.querySelectorAll(".star-rating i");
     const notaInput = document.getElementById("notaInput");
     let selectedRating = 0;
@@ -139,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSubmitRating = document.getElementById("btnSubmitRating");
 
     if (ratingForm) {
-        ratingForm.addEventListener("submit", async function (e) {
+        ratingForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
             if (selectedRating === 0) {
@@ -148,21 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const resp = document.getElementById("feedbackResponse");
-            const formData = new FormData(ratingForm);
-
             btnSubmitRating.disabled = true;
             btnSubmitRating.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
 
-            try {
-                const response = await fetch(ratingForm.action, {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
+            emailjs.sendForm('service_j51ashj', 'template_ve081pv', this)
+                .then(function() {
                     resp.className = "feedback-msg";
                     resp.style.display = "block";
                     resp.innerHTML = "<p>Obrigado! Sua avaliação foi enviada com sucesso.</p>";
@@ -175,61 +168,47 @@ document.addEventListener("DOMContentLoaded", function () {
                         s.classList.remove("fa-solid");
                         s.classList.add("fa-regular");
                     });
-                } else {
-                    throw new Error("Erro de resposta do Formsubmit");
-                }
-            } catch (error) {
-                console.error("Erro no Formsubmit:", error);
-                resp.className = "feedback-msg error";
-                resp.style.display = "block";
-                resp.innerHTML = "<p>Erro ao enviar avaliação. Verifique a conexão e tente novamente.</p>";
-            } finally {
-                btnSubmitRating.disabled = false;
-                btnSubmitRating.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Avaliação';
-            }
+                }, function(error) {
+                    console.error("Erro no EmailJS:", error);
+                    resp.className = "feedback-msg error";
+                    resp.style.display = "block";
+                    resp.innerHTML = "<p>Erro ao enviar avaliação. Tente novamente mais tarde.</p>";
+                })
+                .finally(function() {
+                    btnSubmitRating.disabled = false;
+                    btnSubmitRating.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Avaliação';
+                });
         });
     }
 
-    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM FORMSUBMIT
+    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM EMAILJS
     const contactForm = document.getElementById("contactForm");
     const btnSubmitContact = document.getElementById("btnSubmitContact");
 
     if (contactForm) {
-        contactForm.addEventListener("submit", async function (e) {
+        contactForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
             const resp = document.getElementById("contactResponse");
-            const formData = new FormData(contactForm);
-
             btnSubmitContact.disabled = true;
             btnSubmitContact.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
 
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
+            emailjs.sendForm('service_j51ashj', 'template_ve081pv', this)
+                .then(function() {
                     resp.className = "feedback-msg";
                     resp.style.display = "block";
                     resp.innerHTML = "<p>Mensagem enviada com sucesso! Responderemos em breve.</p>";
                     contactForm.reset();
-                } else {
-                    throw new Error("Erro de resposta do Formsubmit");
-                }
-            } catch (error) {
-                console.error("Erro no Formsubmit:", error);
-                resp.className = "feedback-msg error";
-                resp.style.display = "block";
-                resp.innerHTML = "<p>Erro ao enviar mensagem. Tente novamente mais tarde.</p>";
-            } finally {
-                btnSubmitContact.disabled = false;
-                btnSubmitContact.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';
-            }
+                }, function(error) {
+                    console.error("Erro no EmailJS:", error);
+                    resp.className = "feedback-msg error";
+                    resp.style.display = "block";
+                    resp.innerHTML = "<p>Erro ao enviar mensagem. Tente novamente mais tarde.</p>";
+                })
+                .finally(function() {
+                    btnSubmitContact.disabled = false;
+                    btnSubmitContact.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';
+                });
         });
     }
 });
