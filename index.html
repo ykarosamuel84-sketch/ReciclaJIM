@@ -260,7 +260,7 @@
             </ul>
         </section>
 
-        <!-- Avaliação com Formspree -->
+        <!-- Avaliação com Formsubmit -->
         <section id="satisfacao" class="section-card highlight-box">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-star"></i> Avaliação e Pesquisa de Satisfação</h2>
@@ -268,7 +268,8 @@
             </div>
             <p>Sua opinião é fundamental para melhorarmos nossas ferramentas de conscientização.</p>
             
-            <form id="ratingForm" action="https://formspree.io/f/mppwprao" method="POST" class="rating-form">
+            <form id="ratingForm" action="https://formsubmit.co/ajax/ecojim007@gmail.com" method="POST" class="rating-form">
+                <input type="hidden" name="_subject" value="Nova Avaliação Recebida - EcoJim">
                 <label>Como você avalia a facilidade de encontrar informações no site?</label>
                 
                 <input type="hidden" name="nota_estrelas" id="notaInput" value="0">
@@ -291,13 +292,14 @@
             <div id="feedbackResponse" class="feedback-msg"></div>
         </section>
 
-        <!-- Contato com Formspree -->
+        <!-- Contato com Formsubmit -->
         <section id="contato" class="section-card">
             <div class="title-wrapper">
                 <h2><i class="fa-solid fa-envelope"></i> Fale Conosco</h2>
                 <div class="underline"></div>
             </div>
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mppwprao" method="POST">
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/ecojim007@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nova Mensagem de Contato - EcoJim">
                 <input type="text" placeholder="Seu nome" required id="nome" name="nome">
                 <input type="email" placeholder="Seu e-mail" required id="email" name="email">
                 <textarea rows="4" placeholder="Sua mensagem" required id="mensagem" name="mensagem"></textarea>

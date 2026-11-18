@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderCharts();
 
-    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM FORMSPREE
+    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM FORMSUBMIT
     const stars = document.querySelectorAll(".star-rating i");
     const notaInput = document.getElementById("notaInput");
     let selectedRating = 0;
@@ -176,10 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         s.classList.add("fa-regular");
                     });
                 } else {
-                    throw new Error("Erro de resposta do Formspree");
+                    throw new Error("Erro de resposta do Formsubmit");
                 }
             } catch (error) {
-                console.error("Erro no Formspree:", error);
+                console.error("Erro no Formsubmit:", error);
                 resp.className = "feedback-msg error";
                 resp.style.display = "block";
                 resp.innerHTML = "<p>Erro ao enviar avaliação. Verifique a conexão e tente novamente.</p>";
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM FORMSPREE
+    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM FORMSUBMIT
     const contactForm = document.getElementById("contactForm");
     const btnSubmitContact = document.getElementById("btnSubmitContact");
 
@@ -219,10 +219,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     resp.innerHTML = "<p>Mensagem enviada com sucesso! Responderemos em breve.</p>";
                     contactForm.reset();
                 } else {
-                    throw new Error("Erro de resposta do Formspree");
+                    throw new Error("Erro de resposta do Formsubmit");
                 }
             } catch (error) {
-                console.error("Erro no Formspree:", error);
+                console.error("Erro no Formsubmit:", error);
                 resp.className = "feedback-msg error";
                 resp.style.display = "block";
                 resp.innerHTML = "<p>Erro ao enviar mensagem. Tente novamente mais tarde.</p>";
