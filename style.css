@@ -581,3 +581,29 @@ footer .credits {
     .nav-links { flex-direction: column; width: 100%; gap: 8px; padding-top: 10px; }
     .nav-links a { display: block; text-align: center; padding: 8px; }
 }
+/* Estilo da Seção de Localização e Mapa */
+.location-info {
+    margin: 15px 0;
+    padding: 12px 16px;
+    background-color: rgba(82, 183, 136, 0.1);
+    border-left: 4px solid #2d6a4f;
+    border-radius: 6px;
+}
+
+.location-info p {
+    margin: 4px 0;
+}
+
+.map-container {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 350px;
+}
