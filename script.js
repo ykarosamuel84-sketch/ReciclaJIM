@@ -1,13 +1,11 @@
 // ==========================================
 // CONFIGURAÇÃO DO EMAILJS
 // ==========================================
-// 1. Cole aqui a sua Public Key (Account -> General)
+
 emailjs.init("0UHGn2DYsTSiu7oVA");
 
-// 2. Cole aqui o seu Service ID (Email Services)
 const EMAIL_SERVICE_ID = "service_j51ashj";
 
-// 3. Cole aqui os IDs dos dois templates que você criou
 const TEMPLATE_AVALIACAO = "template_ve081pv"; // Template das estrelas
 const TEMPLATE_CONTATO = "template_fo2tqey";     // Template do Fale Conosco
 
