@@ -1,5 +1,16 @@
-// Inicialize o EmailJS com a sua Public Key
+// ==========================================
+// CONFIGURAÇÃO DO EMAILJS
+// ==========================================
+// 1. Cole aqui a sua Public Key (Account -> General)
 emailjs.init("0UHGn2DYsTSiu7oVA");
+
+// 2. Cole aqui o seu Service ID (Email Services)
+const EMAIL_SERVICE_ID = "service_j51ashj";
+
+// 3. Cole aqui os IDs dos dois templates que você criou
+const TEMPLATE_AVALIACAO = "template_ve081pv"; // Template das estrelas
+const TEMPLATE_CONTATO = "template_fo2tqey";     // Template do Fale Conosco
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -113,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderCharts();
 
-    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO COM EMAILJS
+    // 4. SELEÇÃO DE ESTRELAS E ENVIO DA AVALIAÇÃO (TEMPLATE 1)
     const stars = document.querySelectorAll(".star-rating i");
     const notaInput = document.getElementById("notaInput");
     let selectedRating = 0;
@@ -154,7 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
             btnSubmitRating.disabled = true;
             btnSubmitRating.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
 
-            emailjs.sendForm('service_j51ashj', 'template_ve081pv', this)
+            // Envia usando o template específico de Avaliação
+            emailjs.sendForm(EMAIL_SERVICE_ID, TEMPLATE_AVALIACAO, this)
                 .then(function() {
                     resp.className = "feedback-msg";
                     resp.style.display = "block";
@@ -181,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 5. ENVIO DO FORMULÁRIO DE CONTATO COM EMAILJS
+    // 5. ENVIO DO FORMULÁRIO DE CONTATO (TEMPLATE 2)
     const contactForm = document.getElementById("contactForm");
     const btnSubmitContact = document.getElementById("btnSubmitContact");
 
@@ -193,7 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
             btnSubmitContact.disabled = true;
             btnSubmitContact.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
 
-            emailjs.sendForm('service_j51ashj', 'template_ve081pv', this)
+            // Envia usando o template específico de Contato
+            emailjs.sendForm(EMAIL_SERVICE_ID, TEMPLATE_CONTATO, this)
                 .then(function() {
                     resp.className = "feedback-msg";
                     resp.style.display = "block";
